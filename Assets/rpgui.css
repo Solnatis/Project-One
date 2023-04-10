@@ -8,6 +8,17 @@ inside your html file.
 /**
 * Customized scrollbars
 */
+
+:root {
+  --temple-brown: #7C3600;
+  font-family: 'Press Start 2P', cursive;
+  }
+  
+  body {
+    background-color: var(--temple-brown);
+  }
+  
+
 /* to get pixelated images (nearest-neighbor filter) on all  browsers */
 .rpgui-pixelated {
   -ms-interpolation-mode: nearest-neighbor;
