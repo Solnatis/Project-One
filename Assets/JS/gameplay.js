@@ -17,6 +17,9 @@ var optionD = document.querySelector('#option-d');
 // Objects will hold the prompt and paths
 
 var startRoom = {
+<<<<<<< HEAD
+  roomname: "startRoom",
+=======
 
   // Entry property is how the user picks the room
   entry: ["X", "Y", "Z"],
@@ -28,13 +31,73 @@ var startRoom = {
   opt: ["Go into the depth", "Turn around and go home!"],
 
   // Pic property is the background image that is displayed upon entry
-    // Pic can randomly be pulled with specificity
+  // Pic can randomly be pulled with specificity
   pic: undefined,
-}
+};
+var roomEntry1 = {
+  roomname: "roomEntry1",
+  prompt: ["pick a door"],
+  opt: ["snake room", "eagle room", "Hint room"],
+  entry: ["Go into the depth"],
+};
+var snake = {
+  entry: ["snake room"],
+  prompt: ["A pit of snakes!!"],
+  opt: ["swing on vine", "try to jump"],
+  pic: undefined,
+};
+var eagle = {
+  entry: ["eagle room"],
+  prompt: ["Door with key slot"],
+  opt: ["pick the green key", "pick the blue key", "pick the red key"],
+  pic: undefined,
+};
+var hint = {
+  entry: ["Hint room"],
+  pic: undefined,
+  prompt: ["Give player hint for complex do or die"],
+};
+var safe1 = {
+entry: [""],
+prompt: ["sucess"],
 
+}
+var roomEntry2 = {
+  roomname: "roomEntry2",
+  prompt: ["pick a room"],
+  opt: ["boar room", "dragon room", "bear room"],
+  entry: [""],
+};
+var boar = {
+  entry: ["boar room"],
+  prompt: ["An angry minotar!!"],
+  opt: ["roll out of the way", "try to stop him", "side step"],
+  pic: undefined,
+};
+var dragon = {
+  entry: ["dragon room"],
+  prompt: ["Sleeping dragon!!"],
+  opt: ["sneak past", "wake him up", "take some treasure"],
+  pic: undefined,
+};
+var bear = {
+  entry: ["bear room"],
+  prompt: ["Bear chase!Run!!"],
+  opt: ["run into the end of the hall", "duck into a room", "play dead"],
+  pic: undefined,
+};
+
+<<<<<<< HEAD
+// Room array to hold all the objects and parse through the array
+var roomArray = [];
+
+var trapRoomArray = [];
+
+function trapRoomGenerator() {
+=======
+>>>>>>> dev
   // Trap room array will have riddles
   var trapRoom = {
-  
     // Entry
     entry: ["1", "2", "3"],
   
@@ -123,10 +186,10 @@ function getRiddleAPI() {
   .then(function(data) {
     console.log(data);
 
-    var randomRiddle = {
-      riddle: data.riddle,
-      answer: data.answer,
-    }
+      var randomRiddle = {
+        riddle: data.riddle,
+        answer: data.answer,
+      };
 
     trapRoomArray.push(randomRiddle);
 
