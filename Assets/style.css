@@ -1,3 +1,25 @@
-#mainBox {
-    justify-content: center;
+.vinesL{
+    height: 100%; /* Full-height: remove this if you want "auto" height */
+    width: 160px; /* Set the width of the sidebar */
+    position:absolute; /* Fixed Sidebar (stay in place on scroll) */
+    
+    top: 0; /* Stay at the top */
+    left: 0; /* Allign left */
+    background-image: url("img/vine-border.png");
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 20px;
+    padding: 10px;
+}
+
+.vinesR{
+    height: 100%; /* Full-height: remove this if you want "auto" height */
+    width: 160px; /* Set the width of the sidebar */
+    position:absolute; /* Fixed Sidebar (stay in place on scroll) */
+  
+    top: 0; /* Stay at the top */
+    right: 0; /* Allign Right */
+    background-image: url("img/vine-border.png");
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 20px;
+    padding: 10px;
 }
