@@ -7,3 +7,4 @@ function startGame(event) {
 }
 
 startBtn.addEventListener('click', startGame);
+
