@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Enter the Temple</title>
-
-    <!-- CSS Style Sheet -->
-    <link rel="stylesheet" href="Assets/style.css">
-
+    
     <!-- RPGUI CSS -->
     <link rel="stylesheet" href="Assets/rpgui.css">
     <link href="dist/rpgui.css" rel="stylesheet" type="text/css" >
+
+    <!-- CSS Style Sheet -->
+    <link rel="stylesheet" href="Assets/style.css">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,26 +23,54 @@
 
 <body>
 
-    <header class="rpgui-content rpgui-cursor-default">
-       <h1 class="titleH">Welcome to the Temple</h1>
-    </header>
+  <main>
 
-    <main>
-      <!-- This is the Title Menu -->
-      <div class ="rpgui-center rpgui-content ">
-        <div class="inner rpgui-container framed rpgui-center" id="mainBox">
-           
-              <h2>Enter the Temple</h2>
-              <p>A choose your own story adventure</p>
-             
-              <button class="rpgui-button" type="button"><p>Will you Enter?</p></button>
+    <!-- Sets Page to Use RPG-UI -->
+    <div class="rpgui-content rpgui-cursor-default">
+      <div id="container" style="margin:15%;">
+
+        <!-- Sidebars Left-->
+        <sidebar class="vinesL"></sidebar>
+        <!-- Sidebars Right-->
+        <sidebar class="vinesR"></sidebar>
+
+        <div id="main"></div>
+        <!-- Main Menu -->
+        <div class="inner rpgui-container framed" style="position:relative; top:0;" >
+          <!-- Title -->
+          <header>
+            <h1 style="font-size: 250%;">Enter the Temple</h1>
+            <hr>
+            <h2 style="font-size: 200%;"> A choose your own adventure game</h2>
+          </header>
+          <!-- Button Section -->
+          <div class="rpgui-container framed-grey" style="position:relative; width:100%; height:200px; display:inline-block">
+            <div class="rpgui-center">
+             <button type="button" class="rpgui-button" style="margin:50px;">
+              <p style="font-size:xx-small;">Start your Adventure?
+              </p>
+            </button>
+            </div> 
+          </div>
+          <footer style="text-align: center;">
+            <p> Game Developed by Team 7: EJ, Birhanu, & Ashtin</p>
+          </footer>
 
         </div>
+        
       </div>
 
-    </main>
+      <!-- Keep All Content Above this Div to keep Styling -->
+    </div>
+      
+  </main>
 
-    <script src="Assets/JS/script.js"></script>
-    <script src="Assets/JS/rpgui.js"></script>
+
+
+  <script src="Assets/JS/script.js"></script>
+  <script src="Assets/JS/rpgui.js"></script>
+
 </body>
+
+
 </html>
