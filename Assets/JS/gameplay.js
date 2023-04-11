@@ -14,10 +14,10 @@ var room = {
   entry: ["X", "Y", "Z"],
 
   // Prompt property displays prompt on main
-  prompt: "PROMPT",
+  prompt: "You have arrived!",
 
   // Opt property is how the path the user take out of the room
-  opt: ["A", "B", "C"],
+  opt: ["Go into the depth", "Turn around and go home!"],
 
   // Pic property is the background image that is displayed upon entry
     // Pic can randomly be pulled with specificity
@@ -40,15 +40,20 @@ function trapRoomGenerator() {
     entry: ["1", "2", "3"],
   
     // Prompt / Riddle
-    riddle: "riddle",
+    riddle: undefined,
   
     // Opt
-    opt: ["riddle answer", "X", "y", "Z"],
+    opt: trapRoomArray,
   
     // Pic
     pic: undefined,
   
   }
+
+  trapRoomStorage();
+  trapRoomRetrieve();
+
+
 
 }
 
@@ -60,17 +65,17 @@ function trapRoomRetrieve() {
 }
 
 function trapRoomStorage() {
+  getRiddleAPI();
+  getRiddleAPI();
+  getRiddleAPI();
+  getRiddleAPI();
 }
 
 
 function renderTrap() {
-  getRiddleAPI();
-  getRiddleAPI();
-  getRiddleAPI();
-  getRiddleAPI();
+
 }
 
-renderTrap();
 
 
 
