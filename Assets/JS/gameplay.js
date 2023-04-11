@@ -1,14 +1,22 @@
 var backgroundPicEL = document.querySelector('#background-pic');
 
-var promptEl = document.querySelector('#riddle-prompt');
-
 var riddleURL = "https://riddles-api.vercel.app/random";
+
+var promptEl = document.querySelector('#prompt');
+var optionA = document.querySelector('#option-a');
+var optionB = document.querySelector('#option-b');
+var optionC = document.querySelector('#option-c');
+var optionD = document.querySelector('#option-d');
+
+
+
+
 
 // Need to create objects and array of objects
 
 // Objects will hold the prompt and paths
 
-var room = {
+var startRoom = {
 
   // Entry property is how the user picks the room
   entry: ["X", "Y", "Z"],
@@ -24,15 +32,6 @@ var room = {
   pic: undefined,
 }
 
-// Room array to hold all the objects and parse through the array
-var roomArray = [];
-
-var trapRoomArray = [];
-
-
-
-
-function trapRoomGenerator() {
   // Trap room array will have riddles
   var trapRoom = {
   
@@ -43,20 +42,28 @@ function trapRoomGenerator() {
     riddle: undefined,
   
     // Opt
-    opt: trapRoomArray,
+    opt: [optionA, optionB, optionC, optionD],
   
     // Pic
     pic: undefined,
   
   }
 
+// Room array to hold all the objects and parse through the array
+var roomArray = [];
+
+var trapRoomArray = [];
+
+
+
+// Event listener when OPT for trap room activates
+function trapRoomGenerator() {
+
   trapRoomStorage();
-  trapRoomRetrieve();
-
-
 
 }
 
+// Forgot why I need to use this function
 function trapRoomRetrieve() {
   var parsedArray = JSON.parse(localStorage.getItem('trapRoomArray'));
 
@@ -73,11 +80,20 @@ function trapRoomStorage() {
 
 
 function renderTrap() {
+  console.log("This is your array: " + trapRoomArray);
+
+   promptEl.textContent = "";
+   promptEl.textContent = trapRoomArray[0].riddle;
+
+  for (let i = 0; i < trapRoomArray.length; i++) {
+    trapRoom.opt[i].textContent = "";
+    trapRoom.opt[i].textContent = trapRoomArray[i].answer;
+  }
 
 }
 
 
-
+trapRoomGenerator();
 
 
 
@@ -121,8 +137,11 @@ function getRiddleAPI() {
 
     trapRoomArray.push(randomRiddle);
 
+    // Why would we need to store the trap array in local storage?
+    // Might be over complicating things
     if (trapRoomArray.length === 4) {
       localStorage.setItem('trapRoomArray', JSON.stringify(trapRoomArray));
+      renderTrap();
     }
 
     console.log(trapRoomArray);
@@ -135,3 +154,27 @@ function getRiddleAPI() {
 
 
 // Need to communicate via local storage
+
+
+
+// Gameplay flow // direction
+
+  // Start room 
+    // EntryOne
+      // Snake
+        // Death
+      // Eagle
+      // Hint
+      
+      // TrapRoom
+      // SafeOne
+    
+    // EntryTwo
+      // Boar
+      // Dragon
+      // Bear
+
+      // TrapRoom
+      // Death
+
+      // SafeTwo
