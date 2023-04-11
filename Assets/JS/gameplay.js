@@ -1,5 +1,10 @@
-var backgroundPicEL = document.querySelector('#background-pic');
+var backgroundPicEL = document.querySelector("#background-pic");
 
+<<<<<<< HEAD
+var promptEl = document.querySelector("#riddle-prompt");
+
+=======
+>>>>>>> dev
 var riddleURL = "https://riddles-api.vercel.app/random";
 
 var promptEl = document.querySelector('#prompt');
@@ -17,7 +22,11 @@ var optionD = document.querySelector('#option-d');
 // Objects will hold the prompt and paths
 
 var startRoom = {
+<<<<<<< HEAD
+  roomname: "startRoom",
+=======
 
+>>>>>>> dev
   // Entry property is how the user picks the room
   entry: ["X", "Y", "Z"],
 
@@ -28,26 +37,90 @@ var startRoom = {
   opt: ["Go into the depth", "Turn around and go home!"],
 
   // Pic property is the background image that is displayed upon entry
-    // Pic can randomly be pulled with specificity
+  // Pic can randomly be pulled with specificity
   pic: undefined,
-}
+};
+var roomEntry1 = {
+  roomname: "roomEntry1",
+  prompt: ["pick a door"],
+  opt: ["snake room", "eagle room", "Hint room"],
+  entry: ["Go into the depth"],
+};
+var snake = {
+  entry: ["snake room"],
+  prompt: ["A pit of snakes!!"],
+  opt: ["swing on vine", "try to jump"],
+  pic: undefined,
+};
+var eagle = {
+  entry: ["eagle room"],
+  prompt: ["Door with key slot"],
+  opt: ["pick the green key", "pick the blue key", "pick the red key"],
+  pic: undefined,
+};
+var hint = {
+  entry: ["Hint room"],
+  pic: undefined,
+  prompt: ["Give player hint for complex do or die"],
+};
+var safe1 = {
+entry: [""],
+prompt: ["sucess"],
 
+}
+var roomEntry2 = {
+  roomname: "roomEntry2",
+  prompt: ["pick a room"],
+  opt: ["boar room", "dragon room", "bear room"],
+  entry: [""],
+};
+var boar = {
+  entry: ["boar room"],
+  prompt: ["An angry minotar!!"],
+  opt: ["roll out of the way", "try to stop him", "side step"],
+  pic: undefined,
+};
+var dragon = {
+  entry: ["dragon room"],
+  prompt: ["Sleeping dragon!!"],
+  opt: ["sneak past", "wake him up", "take some treasure"],
+  pic: undefined,
+};
+var bear = {
+  entry: ["bear room"],
+  prompt: ["Bear chase!Run!!"],
+  opt: ["run into the end of the hall", "duck into a room", "play dead"],
+  pic: undefined,
+};
+
+<<<<<<< HEAD
+// Room array to hold all the objects and parse through the array
+var roomArray = [];
+
+var trapRoomArray = [];
+
+function trapRoomGenerator() {
+=======
+>>>>>>> dev
   // Trap room array will have riddles
   var trapRoom = {
-  
     // Entry
     entry: ["1", "2", "3"],
-  
+
     // Prompt / Riddle
     riddle: undefined,
-  
+
     // Opt
+<<<<<<< HEAD
+    opt: trapRoomArray,
+
+=======
     opt: [optionA, optionB, optionC, optionD],
   
+>>>>>>> dev
     // Pic
     pic: undefined,
-  
-  }
+  };
 
 // Room array to hold all the objects and parse through the array
 var roomArray = [];
@@ -60,15 +133,18 @@ var trapRoomArray = [];
 function trapRoomGenerator() {
 
   trapRoomStorage();
+<<<<<<< HEAD
+  trapRoomRetrieve();
+=======
 
+>>>>>>> dev
 }
 
 // Forgot why I need to use this function
 function trapRoomRetrieve() {
-  var parsedArray = JSON.parse(localStorage.getItem('trapRoomArray'));
+  var parsedArray = JSON.parse(localStorage.getItem("trapRoomArray"));
 
-  if (parsedArray !== null)
-    trapRoomArray = parsedArray;
+  if (parsedArray !== null) trapRoomArray = parsedArray;
 }
 
 function trapRoomStorage() {
@@ -78,6 +154,9 @@ function trapRoomStorage() {
   getRiddleAPI();
 }
 
+<<<<<<< HEAD
+function renderTrap() {}
+=======
 
 function renderTrap() {
   console.log("This is your array: " + trapRoomArray);
@@ -99,59 +178,64 @@ trapRoomGenerator();
 
 
 
+>>>>>>> dev
 
 function getAPI() {
-
-  var API_KEY = '';
+  var API_KEY = "";
   var url = "https://pixabay.com/api/?key=" + API_KEY;
 
   fetch(url)
-    .then(function(response) {
+    .then(function (response) {
       console.log(response);
       return response.json();
     })
-    .then(function(data) {
+    .then(function (data) {
       console.log(data);
-    })
-};
+    });
+}
 
 // getAPI();
-
-
 
 // Function should only happen on click event!
 // Click event whenever you reach a trap room!
 function getRiddleAPI() {
   fetch(riddleURL)
-  .then(function(response) {
-    console.log(response);
-    return response.json();
-  })
-  .then(function(data) {
-    console.log(data);
+    .then(function (response) {
+      console.log(response);
+      return response.json();
+    })
+    .then(function (data) {
+      console.log(data);
 
-    var randomRiddle = {
-      riddle: data.riddle,
-      answer: data.answer,
-    }
+      var randomRiddle = {
+        riddle: data.riddle,
+        answer: data.answer,
+      };
 
-    trapRoomArray.push(randomRiddle);
+      trapRoomArray.push(randomRiddle);
 
+<<<<<<< HEAD
+      if (trapRoomArray.length === 4) {
+        localStorage.setItem("trapRoomArray", JSON.stringify(trapRoomArray));
+      }
+=======
     // Why would we need to store the trap array in local storage?
     // Might be over complicating things
     if (trapRoomArray.length === 4) {
       localStorage.setItem('trapRoomArray', JSON.stringify(trapRoomArray));
       renderTrap();
     }
+>>>>>>> dev
 
-    console.log(trapRoomArray);
+      console.log(trapRoomArray);
 
-    // Use randomRiddle to pull from data object!
-
-
-  })
+      // Use randomRiddle to pull from data object!
+    });
 }
 
+<<<<<<< HEAD
+// Need to communicate via local storage
+=======
 
 // Need to communicate via local storage
 
@@ -178,3 +262,4 @@ function getRiddleAPI() {
       // Death
 
       // SafeTwo
+>>>>>>> dev
