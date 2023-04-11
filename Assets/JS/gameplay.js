@@ -79,6 +79,9 @@ function trapRoomStorage() {
 }
 
 
+
+
+// Everytime renderTrap() is called, the trapRoomArray must get smaller by 1
 function renderTrap() {
   console.log("This is your array: " + trapRoomArray);
 
@@ -92,13 +95,7 @@ function renderTrap() {
 
 }
 
-
 trapRoomGenerator();
-
-
-
-
-
 
 function getAPI() {
 
@@ -114,10 +111,6 @@ function getAPI() {
       console.log(data);
     })
 };
-
-// getAPI();
-
-
 
 // Function should only happen on click event!
 // Click event whenever you reach a trap room!
@@ -151,6 +144,8 @@ function getRiddleAPI() {
 
   })
 }
+
+
 
 
 // Need to communicate via local storage
