@@ -348,7 +348,6 @@ function roomSelection(e) {
         
         
         if (room === victoryScreen) {
-          localStorage.setItem('victory', JSON.stringify(room));
           location.href = 'gameEndScreens.html';
         }
         
