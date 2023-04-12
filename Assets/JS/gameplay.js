@@ -8,11 +8,16 @@ var optionB = document.querySelector('#option-b');
 var optionC = document.querySelector('#option-c');
 var optionD = document.querySelector('#option-d');
 
+var optionContainer = document.querySelector('#option-container');
+
+var choicesArray = [optionA, optionB, optionC, optionD];
+
+var room;
+
 // Trap room array will have riddles
 var trapRoom = {
   // Entry into the room
-  // Will update the entry array whenever we create more pathways into trapRoom
-  entry: ["1", "2", "3"],
+  entry: ["Pick the blue key", "Pick the red key", "Duck into a room"],
 
   // Prompt / Riddle
   riddle: undefined,
@@ -25,12 +30,13 @@ var trapRoom = {
 
 }
 
-
 // Need to create objects and array of objects
 
 // Objects will hold the prompt and paths
 
+// TODO: Update all the arrays with proper punctuation and capitalization
 var startRoom = {
+
 
   roomname: "startRoom",
 
@@ -38,7 +44,7 @@ var startRoom = {
   entry: ["X", "Y", "Z"],
 
   // Prompt property displays prompt on main
-  prompt: "You have arrived!",
+  prompt: ["You have arrived!"],
 
   // Opt property is how the path the user take out of the room
   opt: ["Go into the depth", "Turn around and go home!"],
@@ -48,37 +54,43 @@ var startRoom = {
   pic: undefined,
 };
 
+
 var roomEntry1 = {
   roomname: "roomEntry1",
-  prompt: ["pick a door"],
-  opt: ["snake room", "eagle room", "Hint room"],
+  prompt: ["Pick a door"],
+  opt: ["Snake room", "Eagle room", "Hint room"],
   entry: ["Go into the depth"],
 };
 
+
 var snake = {
-  entry: ["snake room"],
+  entry: ["Snake room"],
   prompt: ["A pit of snakes!!"],
-  opt: ["swing on vine", "try to jump"],
+  opt: ["Swing on vine", "Try to jump!"],
   pic: undefined,
 };
+
 
 var eagle = {
   entry: ["eagle room"],
   prompt: ["Door with key slot"],
-  opt: ["pick the green key", "pick the blue key", "pick the red key"],
+  opt: ["Pick the green key", "Pick the blue key", "Pick the red key"],
   pic: undefined,
 };
+
 
 var hint = {
   entry: ["Hint room"],
   pic: undefined,
   prompt: ["Give player hint for complex do or die"],
   opt: ["Receive hint"]
+  opt: ["Receive hint"]
 };
 
+
 var safe1 = {
-entry: ["swing on vine", "pick the green key"],
-prompt: undefined,
+entry: ["Swing on vine", "Pick the green key"],
+prompt: ["You made it to your first Safe Room!"],
 opt: ["proceed to the next room"],
 pic: undefined,
 };
@@ -89,26 +101,33 @@ var roomEntry2 = {
   opt: ["boar room", "dragon room", "bear room"],
   entry: ["proceed to the next room", "Receive hint"],
   pic: undefined,
+  entry: ["proceed to the next room", "Receive hint"],
+  pic: undefined,
 };
+
 
 var boar = {
   entry: ["boar room"],
   prompt: ["An angry minotar!!"],
-  opt: ["roll out of the way", "try to stop him", "side step"],
+  opt: ["Roll out of the way", "Try to stop him", "Side step"],
   pic: undefined,
 };
+
 
 var dragon = {
   entry: ["dragon room"],
   prompt: ["There's a sleeping dragon in this room! What to do?"],
   opt: ["Sneak pass the dragon", "Take some treasure then leave!", "Wake him up because why not"],
+  prompt: ["There's a sleeping dragon in this room! What to do?"],
+  opt: ["Sneak pass the dragon", "Take some treasure then leave!", "Wake him up because why not"],
   pic: undefined,
 };
+
 
 var bear = {
   entry: ["bear room"],
   prompt: ["Bear chase!Run!!"],
-  opt: ["run into the end of the hall", "duck into a room", "play dead"],
+  opt: ["Run into the end of the hall", "Duck into a room", "Play dead"],
   pic: undefined,
 };
 
@@ -120,8 +139,8 @@ var dragonTrap = {
 };
 
 var safe2 = {
-  entry: ["side step", "Wake him up because why not", "play dead"],
-  prompt: undefined,
+  entry: ["Side step", "Wake him up because why not", "Play dead"],
+  prompt: ["Another safe room! Well done!"],
   opt: ["Proceed to the next room"],
   pic: undefined,
 };
@@ -132,24 +151,30 @@ var roomEntry3 = {
   opt: ["Riddle Room", "Hydra Room", "Angel Room"],
   pic: undefined,
 };
+var roomEntry3 = {
+  entry: ["Proceed to the next room"],
+  prompt: ["Choose your next room!"],
+  opt: ["Riddle Room", "Hydra Room", "Angel Room"],
+  pic: undefined,
+};
 
 var riddleRoom = {
   entry: ["Riddle Room"],
-  prompt: [something],
+  prompt: [],
   opt: ["A", "B", "C", "D"],
   pic: undefined,
 };
 
 var hydra = {
   entry: ["Hydra Room"],
-  prompt: [promptForHydra],
+  prompt: ["Test"],
   opt: ["X", "Y", "Z"],
   pic: undefined,
 };
 
 var angel = {
   entry: ["Angel Room"],
-  prompt: [promptForAngel],
+  prompt: ["TEST"],
   opt: ["L", "O", "L"],
   pic: undefined,
 };
@@ -162,7 +187,7 @@ var victoryScreen = {
 };
 
 var gameoverScreen = {
-  entry: [arrayOfWrongsLOL],
+  entry: [],
   prompt: ["GAME OVER"],
   explanation: ["explanation based off of entry"],
   pic: undefined,
@@ -171,9 +196,13 @@ var gameoverScreen = {
 
 
 
+
+
+
 // Room array to hold all the objects and parse through the array
-var roomArray = [];
+var roomArray = [startRoom, roomEntry1, snake, eagle, hint, safe1, roomEntry2, boar, dragon, bear, dragonTrap, safe2, roomEntry3, riddleRoom, hydra, angel];
 var trapRoomArray = [];
+var endingArray = [victoryScreen, gameoverScreen];
 
 // Event listener when OPT for trap room activates
 function trapRoomGenerator() {
@@ -213,12 +242,22 @@ function renderTrap() {
 }
 
 // API for pictures
+// API for pictures
 function getAPI() {
+  
   
   var API_KEY = '';
   var url = "https://pixabay.com/api/?key=" + API_KEY;
   
+  
   fetch(url)
+  .then(function(response) {
+    console.log(response);
+    return response.json();
+  })
+  .then(function(data) {
+    console.log(data);
+  })
   .then(function(response) {
     console.log(response);
     return response.json();
@@ -244,7 +283,14 @@ function getRiddleAPI() {
       answer: data.answer,
     };
     
+    
+    var randomRiddle = {
+      riddle: data.riddle,
+      answer: data.answer,
+    };
+    
     trapRoomArray.push(randomRiddle);
+    
     
     // Why would we need to store the trap array in local storage?
     // Might be over complicating things
@@ -255,7 +301,68 @@ function getRiddleAPI() {
   })
 };
 
-trapRoomGenerator();
+function startGame() {
+  
+  var confirm = localStorage.getItem('start-game');
+  
+  if (confirm) {
+    renderRoom(startRoom);
+  };
+
+}
+
+function renderRoom(obj) {
+  promptEl.textContent = "";
+  promptEl.textContent = obj.prompt[0];
+
+  for (let i = 0; i < choicesArray.length; i++) {
+    choicesArray[i].textContent = "";
+    choicesArray[i].textContent = obj.opt[i];
+  }
+};
+
+
+// If statements need to work more with trap rooms and endgame
+// clicks cycle through entire selection
+function roomSelection(e) {
+  e.preventDefault();
+
+  var click = e.target;
+
+  if (click.matches(".option")) {
+
+    for (let i = 0; i < roomArray.length; i++) {
+      if (roomArray[i].entry.includes(click.textContent)) {
+        room = roomArray[i];
+        console.log(room);
+        renderRoom(room);
+      } 
+    }
+
+
+    // Since trap room array is not populated prior to click, then you need to make array full
+    // for (let i = 0; i < trapRoomArray.length; i++); {
+    //   if (trapRoomArray[i].entry.includes(click.value)) {
+    //     room = trapRoomArray[i];
+    //     trapRoomGenerator();
+    //   }
+    // }
+
+
+        // Need to incorporate endgame objects for local storage
+
+
+  }
+
+}
+// TODO: One you click on the correct option, the function will recursively call itself?
+optionContainer.addEventListener('dblclick', roomSelection);
+
+function endGame() {
+  location.href = 'gameEndScreens.html'
+}
+
+startGame();
 
 
 
@@ -284,3 +391,6 @@ trapRoomGenerator();
       // Death
 
       // SafeTwo
+
+// TODO: Create a list of explanations array within each object - -> This will display with the next room prompt
+// TODO: Fill out entry array for gameover object
