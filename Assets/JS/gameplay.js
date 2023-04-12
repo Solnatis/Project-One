@@ -37,6 +37,7 @@ var trapRoom = {
 // TODO: Update all the arrays with proper punctuation and capitalization
 var startRoom = {
 
+
   roomname: "startRoom",
 
   // Entry property is how the user picks the room
@@ -53,12 +54,14 @@ var startRoom = {
   pic: undefined,
 };
 
+
 var roomEntry1 = {
   roomname: "roomEntry1",
   prompt: ["Pick a door"],
   opt: ["Snake room", "Eagle room", "Hint room"],
   entry: ["Go into the depth"],
 };
+
 
 var snake = {
   entry: ["Snake room"],
@@ -67,6 +70,7 @@ var snake = {
   pic: undefined,
 };
 
+
 var eagle = {
   entry: ["eagle room"],
   prompt: ["Door with key slot"],
@@ -74,12 +78,15 @@ var eagle = {
   pic: undefined,
 };
 
+
 var hint = {
   entry: ["Hint room"],
   pic: undefined,
   prompt: ["Give player hint for complex do or die"],
   opt: ["Receive hint"]
+  opt: ["Receive hint"]
 };
+
 
 var safe1 = {
 entry: ["Swing on vine", "Pick the green key"],
@@ -94,7 +101,10 @@ var roomEntry2 = {
   opt: ["boar room", "dragon room", "bear room"],
   entry: ["proceed to the next room", "Receive hint"],
   pic: undefined,
+  entry: ["proceed to the next room", "Receive hint"],
+  pic: undefined,
 };
+
 
 var boar = {
   entry: ["boar room"],
@@ -103,12 +113,16 @@ var boar = {
   pic: undefined,
 };
 
+
 var dragon = {
   entry: ["dragon room"],
   prompt: ["There's a sleeping dragon in this room! What to do?"],
   opt: ["Sneak pass the dragon", "Take some treasure then leave!", "Wake him up because why not"],
+  prompt: ["There's a sleeping dragon in this room! What to do?"],
+  opt: ["Sneak pass the dragon", "Take some treasure then leave!", "Wake him up because why not"],
   pic: undefined,
 };
+
 
 var bear = {
   entry: ["bear room"],
@@ -131,6 +145,12 @@ var safe2 = {
   pic: undefined,
 };
 
+var roomEntry3 = {
+  entry: ["Proceed to the next room"],
+  prompt: ["Choose your next room!"],
+  opt: ["Riddle Room", "Hydra Room", "Angel Room"],
+  pic: undefined,
+};
 var roomEntry3 = {
   entry: ["Proceed to the next room"],
   prompt: ["Choose your next room!"],
@@ -172,6 +192,9 @@ var gameoverScreen = {
   explanation: ["explanation based off of entry"],
   pic: undefined,
 }
+
+
+
 
 
 
@@ -219,12 +242,22 @@ function renderTrap() {
 }
 
 // API for pictures
+// API for pictures
 function getAPI() {
+  
   
   var API_KEY = '';
   var url = "https://pixabay.com/api/?key=" + API_KEY;
   
+  
   fetch(url)
+  .then(function(response) {
+    console.log(response);
+    return response.json();
+  })
+  .then(function(data) {
+    console.log(data);
+  })
   .then(function(response) {
     console.log(response);
     return response.json();
@@ -250,7 +283,14 @@ function getRiddleAPI() {
       answer: data.answer,
     };
     
+    
+    var randomRiddle = {
+      riddle: data.riddle,
+      answer: data.answer,
+    };
+    
     trapRoomArray.push(randomRiddle);
+    
     
     // Why would we need to store the trap array in local storage?
     // Might be over complicating things
