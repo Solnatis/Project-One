@@ -38,21 +38,10 @@ var count = 0;
 
 // TODO: Update all the arrays with proper punctuation and capitalization
 var startRoom = {
-
-
   roomname: "Starter Room",
-
-  // Entry property is how the user picks the room
   entry: ["X", "Y", "Z"],
-
-  // Prompt property displays prompt on main
   prompt: ["You have arrived!"],
-
-  // Opt property is how the path the user take out of the room
   opt: ["Go into the depth", "Turn around and go home!"],
-
-  // Pic property is the background image that is displayed upon entry
-  // Pic can randomly be pulled with specificity
   pic: undefined,
 };
 
@@ -86,7 +75,7 @@ var eagle = {
 var hint = {
   roomname: "Hint Room",
   entry: ["Hint room"],
-  prompt: [""],
+  prompt: ["Names carry literal weight"],
   opt: ["Receive hint"],
   pic: undefined,
 };
@@ -204,7 +193,7 @@ var gameoverScreen = {
 // Room array to hold all the objects and parse through the array
 var roomArray = [startRoom, roomEntry1, snake, eagle, hint, safe1, roomEntry2, boar, dragon, bear, dragonTrap, safe2, roomEntry3, riddleRoom, hydra, angel, victoryScreen, gameoverScreen];
 var trapRoomArray = [];
-// var endingArray = [victoryScreen, gameoverScreen];
+var pathArray = [];
 
 // Event listener when OPT for trap room activates
 function trapRoomGenerator() {
@@ -239,7 +228,9 @@ function renderTrap(obj) {
   for (let i = 0; i < trapRoomArray.length; i++) {
     choicesArray[i].textContent = "";
     choicesArray[i].textContent = trapRoomArray[i].answer;
-  }
+
+    }
+  
 
   count++;
 }
@@ -304,6 +295,8 @@ function startGame() {
 }
 
 function renderRoom(obj) {
+  var test = true;
+
   roomNameEl.textContent = "";
   roomNameEl.textContent = obj.roomname;
   
@@ -313,10 +306,26 @@ function renderRoom(obj) {
   for (let i = 0; i < choicesArray.length; i++) {
     choicesArray[i].textContent = "";
     choicesArray[i].textContent = obj.opt[i];
+    if (choicesArray[i].textContent !== "") {
+      choicesArray[i].style.display = 'block';
+      choicesArray[i].parentElement.style.display = 'inline-block';
+    } else if (choicesArray[i].textContent === "") {
+      test = false;
+      choicesArray[i].style.display = 'none';  
+      choicesArray[i].parentElement.style.display = 'none';
+      console.log(test); 
+    }    
   }
 };
 
+function pathArrayTracker(path) {
+  pathArray.push(path);
+  if(pathArray.length > 2) {
+    pathArray.shift();
+  }
 
+  localStorage.setItem('path', JSON.stringify(pathArray));
+}
 // If statements need to work more with trap rooms and endgame
 // clicks cycle through entire selection
 function roomSelection(e) {
@@ -331,11 +340,15 @@ function roomSelection(e) {
     
     for (let i = 0; i < roomArray.length; i++) {
       if (roomArray[i].entry.includes(click.textContent)) {
+        
         room = roomArray[i];
+        pathArrayTracker(room);
         console.log(room);
         go = false;
+        
+        
         if (room === victoryScreen) {
-          localStorage.setItem('victory', room);
+          localStorage.setItem('victory', JSON.stringify(room));
           location.href = 'gameEndScreens.html';
         }
         
