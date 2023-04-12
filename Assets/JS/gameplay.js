@@ -81,7 +81,7 @@ var eagle = {
 
 var hint = {
   entry: ["Hint room"],
-  prompt: ["Give player hint for complex do or die"],
+  prompt: [""],
   opt: ["Receive hint"],
   pic: undefined,
 };
@@ -128,26 +128,20 @@ var bear = {
 
 var dragonTrap = {
   entry: ["Sneak past the dragon"],
-  prompt: ["Dragon riddle"],
-  opt: ["ans", "death option"],
+  prompt: ["You woke the dragon! Solve this riddle to escape: Which animal can you make if you take; the head of a lamb, the middle of a pig, and the hind and tail of a dragon?"],
+  opt: ["Lion", "Tiger", "Seahorse", "Hippo"],
   pic: undefined,
 };
 
 var safe2 = {
-  entry: ["Side step", "Wake him up because why not", "Play dead"],
+  entry: ["Lion", "Side step", "Wake him up because why not", "Play dead"],
   prompt: ["Another safe room! Well done!"],
-  opt: ["Proceed to the next room"],
+  opt: ["Pick another room"],
   pic: undefined,
 };
 
 var roomEntry3 = {
-  entry: ["Proceed to the next room"],
-  prompt: ["Choose your next room!"],
-  opt: ["Riddle Room", "Hydra Room", "Angel Room"],
-  pic: undefined,
-};
-var roomEntry3 = {
-  entry: ["Proceed to the next room"],
+  entry: ["Pick another room"],
   prompt: ["Choose your next room!"],
   opt: ["Riddle Room", "Hydra Room", "Angel Room"],
   pic: undefined,
@@ -155,43 +149,45 @@ var roomEntry3 = {
 
 var riddleRoom = {
   entry: ["Riddle Room"],
-  prompt: [],
-  opt: ["A", "B", "C", "D"],
+  prompt: ["My challenge has made men throughout time stumble, I have defeated kings and left wise men humble, You see me now, but I am most often heard, and have killed men when with bullets paired, You might break a sweat when fighting with me, but I will exert no pressure on your body, and with a direct approach you can never find victory, work laterally rather than literally. What am I?"],
+  opt: ["A riddle", "Time", "Age", "Happiness"],
   pic: undefined,
 };
 
 var hydra = {
   entry: ["Hydra Room"],
-  prompt: ["Test"],
-  opt: ["X", "Y", "Z"],
+  prompt: ["There's a room filled with water and a hydra stands before you! What do you do?"],
+  opt: ["Pick up a rusty spear and throw it", "Try to swim across", "Offer your treasure", "Say you know a dragon"],
   pic: undefined,
 };
 
 var angel = {
   entry: ["Angel Room"],
-  prompt: ["TEST"],
-  opt: ["L", "O", "L"],
+  prompt: ["The safest of all rooms and the richest! You found the temple's treaure!"],
+  opt: ["Claim your prize", "Claim your prize", "Claim your prize", "Claim your prize"],
   pic: undefined,
 };
 
 var victoryScreen = {
-  entry: ["riddle-answer", "hydra-answer", "angel-answer"],
+  entry: ["A riddle", "Say you know a dragon", "Claim your prize"],
   prompt: ["YOU ESCAPED!"],
-  explanation: ["explanation based off of entry"],
+  explanation: ["You beat the temple's periless riddle!", "You managed to trick the hydra and got away safely!", "You walked out the temple a little bit richer"],
   pic: undefined,
+  winner: true,
 };
 
 var gameoverScreen = {
-  entry: [],
+  entry: ["Try to jump!", "Roll out of the way", "Try to stop him", "Take some treasure then leave!", "Run to the end of the hall", "Tiger", "Seahorse", "Hippo", "Time", "Age", "Happiness", "Pick up a rusty spear and throw it", "Try to swim across", "Offer your treasure"],
   prompt: ["GAME OVER"],
-  explanation: ["explanation based off of entry"],
+  explanation: ["Jumped a lil too short and the snakes got you", "You didn't roll far enough and got stomped", "What were you thinking?", "The treasure was death", "You can't outrun death!", "The temple claims another with its riddles", "The temple claims another with its riddles", "The temple claims another with its riddles", "The temple claims another with its riddles", "The temple claims another with its riddles", "The temple claims another with its riddles", "The spear bounces off the hydra's scales and now it's more mad", "What're you doing? You can't swim", "You have no tresure and the hydra is made"],
   pic: undefined,
+  winner: false,
 }
 
 // Room array to hold all the objects and parse through the array
-var roomArray = [startRoom, roomEntry1, snake, eagle, hint, safe1, roomEntry2, boar, dragon, bear, dragonTrap, safe2, roomEntry3, riddleRoom, hydra, angel];
+var roomArray = [startRoom, roomEntry1, snake, eagle, hint, safe1, roomEntry2, boar, dragon, bear, dragonTrap, safe2, roomEntry3, riddleRoom, hydra, angel, victoryScreen, gameoverScreen];
 var trapRoomArray = [];
-var endingArray = [victoryScreen, gameoverScreen];
+// var endingArray = [victoryScreen, gameoverScreen];
 
 // Event listener when OPT for trap room activates
 function trapRoomGenerator() {
@@ -308,7 +304,14 @@ function roomSelection(e) {
       if (roomArray[i].entry.includes(click.textContent)) {
         room = roomArray[i];
         console.log(room);
+
+        if (room === victoryScreen) {
+          localStorage.setItem('victory', room);
+          location.href = 'gameEndScreens.html';
+        }
+        
         renderRoom(room);
+        break;
       } 
     }
 
@@ -329,7 +332,7 @@ function roomSelection(e) {
 
 }
 // TODO: One you click on the correct option, the function will recursively call itself?
-optionContainer.addEventListener('dblclick', roomSelection);
+optionContainer.addEventListener('click', roomSelection);
 
 function endGame() {
   location.href = 'gameEndScreens.html'
