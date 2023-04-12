@@ -72,7 +72,7 @@ var snake = {
 
 
 var eagle = {
-  entry: ["eagle room"],
+  entry: ["Eagle room"],
   prompt: ["Door with key slot"],
   opt: ["Pick the green key", "Pick the blue key", "Pick the red key"],
   pic: undefined,
@@ -81,58 +81,53 @@ var eagle = {
 
 var hint = {
   entry: ["Hint room"],
-  pic: undefined,
   prompt: ["Give player hint for complex do or die"],
-  opt: ["Receive hint"]
-  opt: ["Receive hint"]
+  opt: ["Receive hint"],
+  pic: undefined,
 };
 
 
 var safe1 = {
 entry: ["Swing on vine", "Pick the green key"],
 prompt: ["You made it to your first Safe Room!"],
-opt: ["proceed to the next room"],
+opt: ["Proceed to the next room"],
 pic: undefined,
 };
 
 var roomEntry2 = {
   roomname: "roomEntry2",
-  prompt: ["pick a room"],
-  opt: ["boar room", "dragon room", "bear room"],
-  entry: ["proceed to the next room", "Receive hint"],
-  pic: undefined,
-  entry: ["proceed to the next room", "Receive hint"],
+  prompt: ["Pick a room"],
+  opt: ["Boar room", "Dragon room", "Bear room"],
+  entry: ["Proceed to the next room", "Receive hint"],
   pic: undefined,
 };
 
 
 var boar = {
-  entry: ["boar room"],
-  prompt: ["An angry minotar!!"],
+  entry: ["Boar room"],
+  prompt: ["An angry minotaur!"],
   opt: ["Roll out of the way", "Try to stop him", "Side step"],
   pic: undefined,
 };
 
 
 var dragon = {
-  entry: ["dragon room"],
+  entry: ["Dragon room"],
   prompt: ["There's a sleeping dragon in this room! What to do?"],
-  opt: ["Sneak pass the dragon", "Take some treasure then leave!", "Wake him up because why not"],
-  prompt: ["There's a sleeping dragon in this room! What to do?"],
-  opt: ["Sneak pass the dragon", "Take some treasure then leave!", "Wake him up because why not"],
+  opt: ["Sneak past the dragon", "Take some treasure then leave!", "Wake him up because why not"],
   pic: undefined,
 };
 
 
 var bear = {
-  entry: ["bear room"],
-  prompt: ["Bear chase!Run!!"],
-  opt: ["Run into the end of the hall", "Duck into a room", "Play dead"],
+  entry: ["Bear room"],
+  prompt: ["Bear chase! Run!"],
+  opt: ["Run to the end of the hall", "Duck into a room", "Play dead"],
   pic: undefined,
 };
 
 var dragonTrap = {
-  entry: ["Sneak pass the dragon"],
+  entry: ["Sneak past the dragon"],
   prompt: ["Dragon riddle"],
   opt: ["ans", "death option"],
   pic: undefined,
@@ -193,12 +188,6 @@ var gameoverScreen = {
   pic: undefined,
 }
 
-
-
-
-
-
-
 // Room array to hold all the objects and parse through the array
 var roomArray = [startRoom, roomEntry1, snake, eagle, hint, safe1, roomEntry2, boar, dragon, bear, dragonTrap, safe2, roomEntry3, riddleRoom, hydra, angel];
 var trapRoomArray = [];
@@ -223,9 +212,6 @@ function trapRoomStorage() {
   getRiddleAPI();
   getRiddleAPI();
 }
-
-
-
 
 // Everytime renderTrap() is called, the trapRoomArray must get smaller by 1
 function renderTrap() {
@@ -258,13 +244,6 @@ function getAPI() {
   .then(function(data) {
     console.log(data);
   })
-  .then(function(response) {
-    console.log(response);
-    return response.json();
-  })
-  .then(function(data) {
-    console.log(data);
-  })
 };
 
 // Function should only happen on click event!
@@ -277,12 +256,6 @@ function getRiddleAPI() {
   })
   .then(function(data) {
     console.log(data);
-    
-    var randomRiddle = {
-      riddle: data.riddle,
-      answer: data.answer,
-    };
-    
     
     var randomRiddle = {
       riddle: data.riddle,
