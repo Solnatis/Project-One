@@ -11,13 +11,8 @@ function victoryCheck() {
         victoryEl.textContent = "";
         victoryEl.textContent = parsedPath[1].prompt[0];
 
-        for (let i = 0; i < parsedPath[0].opt.length; i++) {
-            if (parsedPath[1].entry.includes(parsedPath[0].opt[i])) {
-                var index = parsedPath[1].entry.indexOf(parsedPath[0].opt[i]);
-                console.log(index);
-                break;
-            }
-        }
+        var index = parsedPath[1].entry.indexOf(parsedPath[1].choice);
+
         explanationEl.textContent = "";
         explanationEl.textContent = parsedPath[1].explanation[index];
     }
@@ -37,15 +32,5 @@ function restartGame(event) {
 }
 
 restartBtn.addEventListener('click', restartGame);
-
-// // Victory or Defeat Check Logic//
-
-// //Victory//
-// Array.includes []
-
-// //Defeat//
-// Array.includes
-
-
 
 // // Same endgame.obj in endgame.js, 

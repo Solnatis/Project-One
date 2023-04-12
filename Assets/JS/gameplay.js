@@ -43,6 +43,7 @@ var startRoom = {
   prompt: ["You have arrived!"],
   opt: ["Go into the depth", "Turn around and go home!"],
   pic: undefined,
+  choice: undefined,
 };
 
 
@@ -51,6 +52,8 @@ var roomEntry1 = {
   prompt: ["Pick a door"],
   opt: ["Snake room", "Eagle room", "Hint room"],
   entry: ["Go into the depth"],
+  pic: undefined,
+  choice: undefined,
 };
 
 
@@ -60,6 +63,7 @@ var snake = {
   prompt: ["A pit of snakes!!"],
   opt: ["Swing on vine", "Try to jump!"],
   pic: undefined,
+  choice: undefined,
 };
 
 
@@ -69,6 +73,7 @@ var eagle = {
   prompt: ["Door with key slot"],
   opt: ["Pick the green key", "Pick the blue key", "Pick the red key"],
   pic: undefined,
+  choice: undefined,
 };
 
 
@@ -78,6 +83,7 @@ var hint = {
   prompt: ["Names carry literal weight"],
   opt: ["Receive hint"],
   pic: undefined,
+  choice: undefined,
 };
 
 
@@ -87,6 +93,7 @@ var safe1 = {
   prompt: ["You made it to your first Safe Room!"],
   opt: ["Proceed to the next room"],
   pic: undefined,
+  choice: undefined,
 };
 
 var roomEntry2 = {
@@ -95,6 +102,7 @@ var roomEntry2 = {
   opt: ["Boar room", "Dragon room", "Bear room"],
   entry: ["Proceed to the next room", "Receive hint", "Riddle Answer 1"],
   pic: undefined,
+  choice: undefined,
 };
 
 
@@ -104,6 +112,7 @@ var boar = {
   prompt: ["An angry minotaur!"],
   opt: ["Roll out of the way", "Try to stop him", "Side step"],
   pic: undefined,
+  choice: undefined,
 };
 
 
@@ -113,6 +122,7 @@ var dragon = {
   prompt: ["There's a sleeping dragon in this room! What to do?"],
   opt: ["Sneak past the dragon", "Take some treasure then leave!", "Wake him up because why not"],
   pic: undefined,
+  choice: undefined,
 };
 
 
@@ -122,6 +132,7 @@ var bear = {
   prompt: ["Bear chase! Run!"],
   opt: ["Run to the end of the hall", "Duck into a room", "Play dead"],
   pic: undefined,
+  choice: undefined,
 };
 
 var dragonTrap = {
@@ -130,6 +141,7 @@ var dragonTrap = {
   prompt: ["You woke the dragon! Solve this riddle to escape: Which animal can you make if you take; the head of a lamb, the middle of a pig, and the hind and tail of a dragon?"],
   opt: ["Lion", "Tiger", "Seahorse", "Hippo"],
   pic: undefined,
+  choice: undefined,
 };
 
 var safe2 = {
@@ -138,6 +150,7 @@ var safe2 = {
   prompt: ["Another safe room! Well done!"],
   opt: ["Pick another room"],
   pic: undefined,
+  choice: undefined,
 };
 
 var roomEntry3 = {
@@ -146,6 +159,7 @@ var roomEntry3 = {
   prompt: ["Choose your next room!"],
   opt: ["Riddle Room", "Hydra Room", "Angel Room"],
   pic: undefined,
+  choice: undefined,
 };
 
 var riddleRoom = {
@@ -154,6 +168,7 @@ var riddleRoom = {
   prompt: ["My challenge has made men throughout time stumble, I have defeated kings and left wise men humble, You see me now, but I am most often heard, and have killed men when with bullets paired, You might break a sweat when fighting with me, but I will exert no pressure on your body, and with a direct approach you can never find victory, work laterally rather than literally. What am I?"],
   opt: ["A riddle", "Time", "Age", "Happiness"],
   pic: undefined,
+  choice: undefined,
 };
 
 var hydra = {
@@ -162,6 +177,7 @@ var hydra = {
   prompt: ["There's a room filled with water and a hydra stands before you! What do you do?"],
   opt: ["Pick up a rusty spear and throw it", "Try to swim across", "Offer your treasure", "Say you know a dragon"],
   pic: undefined,
+  choice: undefined,
 };
 
 var angel = {
@@ -170,6 +186,7 @@ var angel = {
   prompt: ["The safest of all rooms and the richest! You found the temple's treaure!"],
   opt: ["Claim your prize"],
   pic: undefined,
+  choice: undefined,
 };
 
 var victoryScreen = {
@@ -178,6 +195,7 @@ var victoryScreen = {
   prompt: ["YOU ESCAPED!"],
   explanation: ["You beat the temple's periless riddle!", "You managed to trick the hydra and got away safely!", "You walked out the temple a little bit richer"],
   pic: undefined,
+  choice: undefined,
   winner: true,
 };
 
@@ -187,6 +205,7 @@ var gameoverScreen = {
   prompt: ["GAME OVER"],
   explanation: ["Jumped a lil too short and the snakes got you", "You didn't roll far enough and got stomped", "What were you thinking?", "The treasure was death", "You can't outrun death!", "The temple claims another with its riddles", "The temple claims another with its riddles", "The temple claims another with its riddles", "The temple claims another with its riddles", "The temple claims another with its riddles", "The temple claims another with its riddles", "The spear bounces off the hydra's scales and now it's more mad", "What're you doing? You can't swim", "You have no tresure and the hydra is made"],
   pic: undefined,
+  choice: undefined,
   winner: false,
 }
 
@@ -342,6 +361,7 @@ function roomSelection(e) {
       if (roomArray[i].entry.includes(click.textContent)) {
         
         room = roomArray[i];
+        room.choice = click.textContent;
         pathArrayTracker(room);
         console.log(room);
         go = false;
