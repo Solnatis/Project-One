@@ -9,14 +9,14 @@ function restartGame(event) {
 
 restartBtn.addEventListener('click', restartGame);
 
-// Victory or Defeat Check Logic//
+// // Victory or Defeat Check Logic//
 
-//Victory//
-Array.includes []
+// //Victory//
+// Array.includes []
 
-//Defeat//
-Array.includes
+// //Defeat//
+// Array.includes
 
 
 
-// Same endgame.obj in endgame.js, 
+// // Same endgame.obj in endgame.js, 
