@@ -7,7 +7,7 @@ var explanationEl = document.querySelector('#explanation-text');
 function victoryCheck() {
     var parsedPath = JSON.parse(localStorage.getItem('path'));
 
-    if (parsedPath[1].winner) {
+    if (parsedPath) {
         victoryEl.textContent = "";
         victoryEl.textContent = parsedPath[1].prompt[0];
 
@@ -20,7 +20,6 @@ function victoryCheck() {
         }
         explanationEl.textContent = "";
         explanationEl.textContent = parsedPath[1].explanation[index];
-
     }
 }
 

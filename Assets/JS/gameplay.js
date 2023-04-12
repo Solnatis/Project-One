@@ -168,7 +168,7 @@ var angel = {
   roomname: "Angel Room",
   entry: ["Angel Room"],
   prompt: ["The safest of all rooms and the richest! You found the temple's treaure!"],
-  opt: ["Claim your prize", "Claim your prize", "Claim your prize", "Claim your prize"],
+  opt: ["Claim your prize"],
   pic: undefined,
 };
 
@@ -346,8 +346,7 @@ function roomSelection(e) {
         console.log(room);
         go = false;
         
-        
-        if (room === victoryScreen) {
+        if (room === victoryScreen || room === gameoverScreen) {
           location.href = 'gameEndScreens.html';
         }
         
