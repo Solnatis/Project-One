@@ -116,7 +116,7 @@ var boar = {
 var dragon = {
   roomname: "Dragon Room",
   entry: ["Dragon room"],
-  prompt: ["There's a sleeping dragon in this room! What to do?"],
+  prompt: ["You approach the door with a abnormally relaxed looking etch of a dragon sleeping on a pile of what looks like treasure. Right below the etching, there is another hand shaped indent. You place your hand on it once more and with a flash of golden light coming from the dragon. The door swings open and from deep within the room you can hear a faint rumbling. You gather your courage and trek onwards. After a few paces the doors behind you close shut and only your torch light guides you. Soon you reach what would have been a doorway except it looks like it was blown inwards and as you peer into the room, you see something that can only be explained as magical. A mountain of Gold, Treasures and Jewels stands before you. But quietly perched above the mountain on a large pedestals lays a massive slumbering red dragon. What do you do?"],
   opt: ["Sneak past the dragon", "Take some treasure then leave!", "Wake him up because why not"],
   picDesc: "Dragon",
   pic: undefined,
@@ -127,7 +127,7 @@ var dragon = {
 var bear = {
   roomname: "Bear Room",
   entry: ["Bear room"],
-  prompt: ["Bear chase! Run!"],
+  prompt: ["You approach the door with a bear standing on its hind legs, frozen in the stone roaring at the world. Right below the etching, there is another hand shaped indent. You place your hand on it once more and with a flash of yellow the doors creak open. They stop short however and you are forced to squeeze yourself through. Once through the door they slam shut again and a putrid odor fills your nose. As you try to walk through the hall you are met with what looks to be remains of past adventurers half eaten by... something. Than you hear it. A load roar and the sound of something large moving quickly. You spin around and thought the dim torch light you see a Massive Dire bear running towards you! What do you do!"],
   opt: ["Run to the end of the hall", "Duck into a room", "Play dead"],
   picDesc: "angry-bear",
   pic: undefined,
@@ -137,7 +137,7 @@ var bear = {
 var dragonTrap = {
   roomname: "Dragon's Riddle",
   entry: ["Sneak past the dragon"],
-  prompt: ["You woke the dragon! Solve this riddle to escape: Which animal can you make if you take; the head of a lamb, the middle of a pig, and the hind and tail of a dragon?"],
+  prompt: ["As you try to sneak past you accidenally kick a small goblet full of gold coins. You woke the dragon! He was not happy with you interupting his nap. He speaks telepathically to you and says 'Solve this riddle or I will eat you for disturbing my nap' You swallow your fear and ask the dragon what the riddle is. It speaks and says 'Which animal can you make if you take; the head of a lamb, the middle of a pig, and the hind and tail of a dragon?' Remember a Hint if you got one. "],
   opt: ["Lion", "Tiger", "Seahorse", "Hippo"],
   picDesc: "angry-dragon",
   pic: undefined,
@@ -145,8 +145,8 @@ var dragonTrap = {
 };
 
 var safe2 = {
-  roomname: "Safe Room",
-  prompt: ["Another safe room! Well done!"],
+  roomname: "Success Again!!",
+  prompt: ["Through sheer luck you've survivied. You collapse to the floor exhausted. But your not done yet. Your gut tells you that your almost there. So you pick yourself up, brush yourself off, and carry on."],
   entry: ["Lion", "Side step", "Wake him up because why not", "Play dead", "Riddle Answer 2"],
   opt: ["Pick another room"],
   picDesc: "thumbs-up",
@@ -155,8 +155,8 @@ var safe2 = {
 };
 
 var roomEntry3 = {
-  roomname: "Choose Your Room",
-  prompt: ["Choose wisely"],
+  roomname: "The Final Chambers",
+  prompt: ["You have reached the last rooms in the temple. Three New Creatures lay on the Stone doors. You know the drill, Which door do you pick?"],
   entry: ["Pick another room"],
   opt: ["Riddle Room", "Hydra Room", "Angel Room"],
   picDesc: "doors",
@@ -167,7 +167,7 @@ var roomEntry3 = {
 var riddleRoom = {
   roomname: "Riddle Room",
   entry: ["Riddle Room"],
-  prompt: ["My challenge has made men throughout time stumble, I have defeated kings and left wise men humble, You see me now, but I am most often heard, and have killed men when with bullets paired, You might break a sweat when fighting with me, but I will exert no pressure on your body, and with a direct approach you can never find victory, work laterally rather than literally. What am I?"],
+  prompt: ["You approach a door with a faintly ingraved question mark and another Hand sized inprint. Placing your hand on the seal, the doors open into a small room. As you enter, the doors close behind you. Looking around there isnt another door. You check all the walls and the floors but there is nothing. But than, the sound of Rushing water comes pouring in! OH NO! As the water flows in, A bright neon blue text glows from the walls and says 'My challenge has made men throughout time stumble, I have defeated kings and left wise men humble, You see me now, but I am most often heard, and have killed men when with bullets paired, You might break a sweat when fighting with me, but I will exert no pressure on your body, and with a direct approach you can never find victory, work laterally rather than literally. What am I?'"],
   opt: ["A riddle", "Time", "Age", "Happiness"],
   picDesc: "riddles",
   pic: undefined,
@@ -177,7 +177,7 @@ var riddleRoom = {
 var hydra = {
   roomname: "Hydra Room",
   entry: ["Hydra Room"],
-  prompt: ["There's a room filled with water and a hydra stands before you! What do you do?"],
+  prompt: ["You approach a door with a faintly ingraved multi-headed dragon and another Hand sized inprint. This door is covered in deep scratches. Placing your hand on the seal, the doors open into a large room filled with water and a few floating platforms. As you enter the room and the doors close, the torches illuminate in the room and a bubbling appears in the water. A giant Hydra bursts from out of the depths and begins to bear down on you. THINK FAST! WHAT DO YOU DO!."],
   opt: ["Pick up a rusty spear and throw it", "Try to swim across", "Offer your treasure", "Say you know a dragon"],
   picDesc: "hydra",
   pic: undefined,
@@ -187,8 +187,8 @@ var hydra = {
 var angel = {
   roomname: "Angel Room",
   entry: ["Angel Room"],
-  prompt: ["The safest of all rooms and the richest! You found the temple's treaure!"],
-  opt: ["Claim your prize"],
+  prompt: ["You walk towards the door with a symbol of two wings spread out across them. As you press your hand against the small indented hand spot on the door. nothing happens. you press it again and nothing happens once more. You walk around and try pressing other doors symbols but now they wont work. Hm. very curious. Suddenly a giant statue in the room moves horizontally across the room revealing a small chute going deep into the ground. Do you go?"],
+  opt: ["Go down the Slide!"],
   picDesc: "angel",
   pic: undefined,
   choice: undefined,
@@ -196,9 +196,9 @@ var angel = {
 
 var victoryScreen = {
   roomname: "VICTORY!",
-  entry: ["A riddle", "Say you know a dragon", "Claim your prize"],
+  entry: ["A riddle", "Say you know a dragon", "Go down the Slide!"],
   prompt: ["YOU ESCAPED!"],
-  explanation: ["You beat the temple's periless riddle!", "You managed to trick the hydra and got away safely!", "You walked out the temple a little bit richer"],
+  explanation: ["As you you scream 'A RIDDLE' the water stops... and then begins to get sucked down through the floor in the form of a massive whirlpool! you get sucked down a massive waterslide of rocks and water before being shot out into a lagoon. As your surface the water you rub your eyes twice. Because before you is the biggest pile of gold and treasures you have ever seen! and better yet... A way out!", "The hydra stops in its tracks. Hearing the name 'Dragon' causes it to step backwards very quickly before diving into the water. You take this oppurunity to rush to the otherside of the room bouncing on the floating platforms. You reach the end of the room and as you push open the last door you are greated to the fresh smell of air and the sight of a hundred kingdoms riches laying before you. You have found the Temples Treasure and better yet... A way out!", "You seemed to have found the secret entrance to the Temples great vaults and tumble into a giant pile of gold and treasures! As you lay your head back on the piles of gold you see it... A way out!"],
   picDesc: "Winner",
   pic: undefined,
   choice: undefined,
@@ -209,8 +209,7 @@ var gameoverScreen = {
   roomname: "GAME OVER!",
   entry: ["Try to jump!", "Roll out of the way", "Try to stop him", "Take some treasure then leave!", "Run to the end of the hall", "Tiger", "Seahorse", "Hippo", "Time", "Age", "Happiness", "Pick up a rusty spear and throw it", "Try to swim across", "Offer your treasure", "Temple Riddle"],
   prompt: ["GAME OVER"],
-  explanation: ["You take a breath and take a few steps back. You sprint towards the edge and jump!... Right into the pit of Vipers.", "You didn't roll far enough and got stomped", "What were you thinking?", "The treasure was death", "You can't outrun death!", "The temple claims another with its riddles", "The temple claims another with its riddles", "The temple claims another with its riddles", "The temple claims another with its riddles", "The temple claims another with its riddles", "The temple claims another with its riddles", "The spear bounces off the hydra's scales and now it's more mad", "What're you doing? You can't swim", "You have no tresure and the hydra is made", "The temple claims another with its riddles"],
-  explanation: ["Jumped a lil too short and the snakes got you", "You didn't roll far enough and got stomped", "What were you thinking?", "The treasure was death", "You can't outrun death!", "The temple claims another with its riddles", "The temple claims another with its riddles", "The temple claims another with its riddles", "The temple claims another with its riddles", "The temple claims another with its riddles", "The temple claims another with its riddles", "The spear bounces off the hydra's scales and now it's more mad", "What're you doing? You can't swim", "You have no tresure and the hydra is made", "The temple claims another with its riddles"],
+  explanation: ["You take a breath and take a few steps back. You sprint towards the edge and jump!... Right into the pit of Vipers.", "You didn't roll far enough and got stomped", "What were you thinking?", "The dragon did not find that amusing, you're toast :(", "You can't outrun a death machine!", "The Dragon Laughs and Says 'No!' You are now DragonChow", "The Dragon Laughs and Says 'No!' You are now DragonChow", "The Dragon Laughs and Says 'No!' You are now DragonChow", "You scream the answer... but it wasnt right. The water fills the room and you drown :(", "You scream the answer... but it wasnt right. The water fills the room and you drown :(", "You scream the answer... but it wasnt right. The water fills the room and you drown :(", "The spear bounces off the hydra's scales and now it's more mad", "What're you doing? You can't swim", "You have no tresure and the hydra is mad", "The temple claims another with its riddles"],
   picDesc: "game-over",
   pic: undefined,
   choice: undefined,
