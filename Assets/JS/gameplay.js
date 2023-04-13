@@ -23,8 +23,6 @@ var startRoom = {
   entry: ["X", "Y", "Z"],
   prompt: ["You have arrived, after many long hours of driving through the misty rainforest, at the foot of an Ancient Temple. Long forgotten to the world, you can only imagine what great treasurs lie within. The Temple stands over you a many hundreds of feet, casting a dark and ominious shadow over you. What will you do? "],
   opt: ["Enter the Depths of the Temple!", "Turn around and go home!"],
-  prompt: ["You have arrived!"],
-  opt: ["Go into the depth", "Turn around and go home!"],
   picDesc: "beginning-of-path",
   pic: undefined,
   choice: undefined,
@@ -38,28 +36,15 @@ var noTurningAroundRoom = {
   pic: undefined,
   choice: undefined,
 }
-var noTurningAroundRoom = {
-  roomname: "There's no turning around!",
-  entry: ["Turn around and go home!"],
-  prompt: ["Let's keep it going"],
-  opt: ["Go on in"],
-  picDesc: "stop",
-  pic: undefined,
-  choice: undefined,
-}
 
 var roomEntry1 = {
   roomname: "Choose Your Room",
   prompt: ["As you approach the gargantuan temple doors, they swing open... almost like they were expecting you. As you walk slowly inside you catch a glimmer of something metallic lining the temple walls. You step closer to get a better look to realize they are torches and decide to grab and light one. Suddenly the doors behind you slam shut, locking you inside. As the darkness fills the room, the soft warm glow of the torch illuminates the rest of the temple entrance room and you see before you lies three giant stone doors each with a Unique Animal etched into them. The light of your torch dances of the eerie walls. You must pick a door to carry on deeper. Which do you choose?"],
-  prompt: ["Choose wisely"],
   opt: ["Snake room", "Eagle room", "Hint room"],
   entry: ["Enter the Depths of the Temple!", "Go on in"],
   pic: undefined,
   choice: undefined,
-  entry: ["Go into the depth", "Go on in"],
   picDesc: "Doors",
-  pic: undefined,
-  choice: undefined,
 };
 
 
