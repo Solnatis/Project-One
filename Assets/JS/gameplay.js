@@ -19,40 +19,39 @@ var count = 0;
 var countMinus = 0;
 
 var startRoom = {
-  roomname: "Starter Room",
+  roomname: "Temple Entrance",
   entry: ["X", "Y", "Z"],
-  prompt: ["You have arrived!"],
-  opt: ["Go into the depth", "Turn around and go home!"],
+  prompt: ["You have arrived, after many long hours of driving through the misty rainforest, at the foot of an Ancient Temple. Long forgotten to the world, you can only imagine what great treasurs lie within. The Temple stands over you a many hundreds of feet, casting a dark and ominious shadow over you. What will you do? "],
+  opt: ["Enter the Depths of the Temple!", "Turn around and go home!"],
   picDesc: "beginning-of-path",
   pic: undefined,
   choice: undefined,
 };
 
 var noTurningAroundRoom = {
-  roomname: "There's no turning around!",
+  roomname: "There's no turning back brave Adventurer!",
   entry: ["Turn around and go home!"],
-  prompt: ["Let's keep it going"],
+  prompt: ["Adventure Calls! You cant turn around now!"],
   opt: ["Go on in"],
-  picDesc: "stop",
   pic: undefined,
   choice: undefined,
 }
 
 var roomEntry1 = {
   roomname: "Choose Your Room",
-  prompt: ["Choose wisely"],
+  prompt: ["As you approach the gargantuan temple doors, they swing open... almost like they were expecting you. As you walk slowly inside you catch a glimmer of something metallic lining the temple walls. You step closer to get a better look to realize they are torches and decide to grab and light one. Suddenly the doors behind you slam shut, locking you inside. As the darkness fills the room, the soft warm glow of the torch illuminates the rest of the temple entrance room and you see before you lies three giant stone doors each with a Unique Animal etched into them. The light of your torch dances of the eerie walls. You must pick a door to carry on deeper. Which do you choose?"],
   opt: ["Snake room", "Eagle room", "Hint room"],
-  entry: ["Go into the depth", "Go on in"],
-  picDesc: "Doors",
+  entry: ["Enter the Depths of the Temple!", "Go on in"],
   pic: undefined,
   choice: undefined,
+  picDesc: "Doors",
 };
 
 
 var snake = {
   roomname: "Snake Room",
   entry: ["Snake room"],
-  prompt: ["A pit of snakes!!"],
+  prompt: ["You approach the door depicting a large snake bearing its fangs. Right below the Etching, there is small indent in the shape of a hand. You place your hand on it and once you do, the etched snake illuminates a bright emereald glow and than swings open. Once inside the room, the door closes and after moving forward more into the room you notice that the middle of the room has sunk into the ground. As you peer over into the darkness you swing your torch out to see if you can see into the depths. What lies below was what looks to be a giant snake statue with emerald eyes. But what surrounds it are Giant, Obsidisan Vipers. They notice you and you can sense they want a snack. Think Quickly! What do you do!!"],
   opt: ["Swing on vine", "Try to jump!"],
   picDesc: "Snakes",
   pic: undefined,
@@ -210,6 +209,7 @@ var gameoverScreen = {
   roomname: "GAME OVER!",
   entry: ["Try to jump!", "Roll out of the way", "Try to stop him", "Take some treasure then leave!", "Run to the end of the hall", "Tiger", "Seahorse", "Hippo", "Time", "Age", "Happiness", "Pick up a rusty spear and throw it", "Try to swim across", "Offer your treasure", "Temple Riddle"],
   prompt: ["GAME OVER"],
+  explanation: ["You take a breath and take a few steps back. You sprint towards the edge and jump!... Right into the pit of Vipers.", "You didn't roll far enough and got stomped", "What were you thinking?", "The treasure was death", "You can't outrun death!", "The temple claims another with its riddles", "The temple claims another with its riddles", "The temple claims another with its riddles", "The temple claims another with its riddles", "The temple claims another with its riddles", "The temple claims another with its riddles", "The spear bounces off the hydra's scales and now it's more mad", "What're you doing? You can't swim", "You have no tresure and the hydra is made", "The temple claims another with its riddles"],
   explanation: ["Jumped a lil too short and the snakes got you", "You didn't roll far enough and got stomped", "What were you thinking?", "The treasure was death", "You can't outrun death!", "The temple claims another with its riddles", "The temple claims another with its riddles", "The temple claims another with its riddles", "The temple claims another with its riddles", "The temple claims another with its riddles", "The temple claims another with its riddles", "The spear bounces off the hydra's scales and now it's more mad", "What're you doing? You can't swim", "You have no tresure and the hydra is made", "The temple claims another with its riddles"],
   picDesc: "game-over",
   pic: undefined,
