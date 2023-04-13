@@ -21,6 +21,8 @@ function victoryCheck() {
         explanationEl.textContent = "";
         explanationEl.textContent = parsedPath[1].explanation[index];
     }
+
+    
 }
 
 victoryCheck();

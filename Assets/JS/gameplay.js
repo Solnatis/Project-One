@@ -48,7 +48,7 @@ var startRoom = {
 
 var roomEntry1 = {
   roomname: "Choose Your Room",
-  prompt: ["Pick a door"],
+  prompt: ["Choose wisely"],
   opt: ["Snake room", "Eagle room", "Hint room"],
   entry: ["Go into the depth"],
 };
@@ -90,8 +90,8 @@ var safe1 = {
 };
 
 var roomEntry2 = {
-  roomname: "Choose Your Room",
-  prompt: ["Pick a room"],
+  roomname: "Choose a room",
+  prompt: ["Pick wisely"],
   opt: ["Boar room", "Dragon room", "Bear room"],
   entry: ["Proceed to the next room", "Receive hint", "Riddle Answer 1"],
   pic: undefined,
@@ -134,17 +134,17 @@ var dragonTrap = {
 
 var safe2 = {
   roomname: "Safe Room",
-  entry: ["Lion", "Side step", "Wake him up because why not", "Play dead"],
   prompt: ["Another safe room! Well done!"],
+  entry: ["Lion", "Side step", "Wake him up because why not", "Play dead"],
   opt: ["Pick another room"],
   pic: undefined,
 };
 
 var roomEntry3 = {
   roomname: "Choose Your Room",
+  prompt: ["Choose wisely"],
   entry: ["Pick another room"],
-  prompt: ["Choose your next room!"],
-  opt: ["Riddle Room", "Hydra Room", "Angel Room"],
+  opt: ["Riddle Room", "Hydra Room", "Angel Room", "Riddle Answer 2"],
   pic: undefined,
 };
 
@@ -332,11 +332,9 @@ function roomSelection(e) {
   e.preventDefault();
 
   var click = e.target; 
-  var go = true;
-
+  var x = true;
+  var z = true;
   if (click.matches(".option")) {
-    
-  
     
     for (let i = 0; i < roomArray.length; i++) {
       if (roomArray[i].entry.includes(click.textContent)) {
@@ -344,8 +342,8 @@ function roomSelection(e) {
         room = roomArray[i];
         pathArrayTracker(room);
         console.log(room);
-        go = false;
-        
+        x = false;
+        z = false;
         if (room === victoryScreen || room === gameoverScreen) {
           location.href = 'gameEndScreens.html';
         }
@@ -357,18 +355,35 @@ function roomSelection(e) {
     
     // Since trap room array is not populated prior to click, then you need to make array full
     for (let i = count; i < trapRoomArray.length; i++) {
-      if (trapRoomArray[i].entry.includes(click.textContent) && go) {
+      if (trapRoomArray[i].entry.includes(click.textContent) && x) {
         room = trapRoomArray[i];
-
         console.log(room);
+        z = false;
+
+        pathArrayTracker(room);
         renderTrap(room);
         break;       
       }
     }
     
+    // for (let i = count; i < trapRoomArray.length; i++) {
+    //   if (trapRoomArray[i].answer.includes(click.textContent) && )
+    // }
 
-        // Need to incorporate endgame objects for local storage
-
+    if ((trapRoomArray[count].answer === click.textContent) && z) {
+      for (let i = 0; i < roomArray.length; i++) {
+        if (roomArray[i].entry.includes("Riddle Answer " + count)) {
+          room = roomArray[i];
+          pathArrayTracker(room);
+          renderRoom(room);
+          break;
+        }
+      }      
+    } else if (trapRoomArray[count].answer !== click.textContent && z) {
+      room = gameoverScreen;
+      pathArrayTracker(room);
+      location.href = 'gameEndScreens.html';
+    }
 
   }
 
