@@ -9,14 +9,12 @@ var optionA = document.querySelector('#option-a');
 var optionB = document.querySelector('#option-b');
 var optionC = document.querySelector('#option-c');
 var optionD = document.querySelector('#option-d');
-
 var optionContainer = document.querySelector('#option-container');
 
 var choicesArray = [optionA, optionB, optionC, optionD];
 
 var room;
 var count = 0;
-var countMinus = 0;
 
 var startRoom = {
   roomname: "Temple Entrance",
@@ -47,7 +45,6 @@ var roomEntry1 = {
   picDesc: "Doors",
 };
 
-
 var snake = {
   roomname: "Snake Room",
   entry: ["Snake room"],
@@ -57,7 +54,6 @@ var snake = {
   pic: undefined,
   choice: undefined,
 };
-
 
 var eagle = {
   roomname: "Eagle Room",
@@ -69,7 +65,6 @@ var eagle = {
   choice: undefined,
 };
 
-
 var hint = {
   roomname: "Lion Room",
   entry: ["Lion Room"],
@@ -80,11 +75,10 @@ var hint = {
   choice: undefined,
 };
 
-
 var safe1 = {
   roomname: "Success!",
   prompt: ["With a sigh of relief you push forward, You go through the next door."],
-  entry: ["Swing on vine", "Pick the green key", "Riddle Answer 1"],
+  entry: ["Swing on vine", "Pick the green key", "Riddle Answer"],
   opt: ["Proceed to the next room"],
   picDesc: "thumbs-up",
   pic: undefined,
@@ -101,7 +95,6 @@ var roomEntry2 = {
   choice: undefined,
 };
 
-
 var boar = {
   roomname: "Boar Room",
   entry: ["Boar room"],
@@ -112,7 +105,6 @@ var boar = {
   choice: undefined,
 };
 
-
 var dragon = {
   roomname: "Dragon Room",
   entry: ["Dragon room"],
@@ -122,7 +114,6 @@ var dragon = {
   pic: undefined,
   choice: undefined,
 };
-
 
 var bear = {
   roomname: "Bear Room",
@@ -227,14 +218,6 @@ function trapRoomGenerator() {
   trapRoomStorage();
 }
 
-// Forgot why I need to use this function
-function trapRoomRetrieve() {
-  var parsedArray = JSON.parse(localStorage.getItem('trapRoomArray'));
-
-  if (parsedArray !== null)
-    trapRoomArray = parsedArray;
-}
-
 function trapRoomStorage() {
   getRiddleAPI();
   getRiddleAPI();
@@ -264,15 +247,7 @@ function renderTrap(obj) {
       console.log(test); 
     }
   }
-  
-
   count++;
-  countMinus++;
-
-  if (count == countMinus) {
-    countMinus--;
-  }
-
 }
 
 // API for pictures
@@ -324,13 +299,9 @@ function getRiddleAPI() {
     };
     
     trapRoomArray.push(randomRiddle);
-    
-    
-    // Why would we need to store the trap array in local storage?
-    // Might be over complicating things
+
     if (trapRoomArray.length === 4) {
       createImageQuery();
-      localStorage.setItem('trapRoomArray', JSON.stringify(trapRoomArray));
     }
   })
 };
@@ -341,7 +312,6 @@ function startGame() {
   
   if (confirm) {
     trapRoomGenerator();
-    // renderRoom(startRoom);
   };
 
 }
@@ -423,19 +393,27 @@ function roomSelection(e) {
       }
     }
     
-    // for (let i = count; i < trapRoomArray.length; i++) {
-    //   if (trapRoomArray[i].answer.includes(click.textContent) && )
-    // }
-
     if ((z && x) && (pathArray[1].answer === click.textContent)) {
-      for (let i = 0; i < roomArray.length; i++) {
-        if (roomArray[i].entry.includes("Riddle Answer " + count)) {
-          room = roomArray[i];
-          pathArrayTracker(room);
-          renderRoom(room);
-          break;
+      
+      if (roomArray.indexOf(pathArray[0]) <= 6) {
+        for (let i = 0; i < roomArray.length; i++) {
+          if (roomArray[i].entry.includes("Riddle Answer")) {
+            room = roomArray[i];
+            pathArrayTracker(room);
+            renderRoom(room);
+            break;
+          }
+        }      
+      } else if (roomArray.indexOf(pathArray[0]) > 6) {
+        for (let i = 7; i < roomArray.length; i++) {
+          if (roomArray[i].entry.includes("Riddle Answer")) {
+            room = roomArray[i];
+            pathArrayTracker(room);
+            renderRoom(room);
+            break;
+          }
         }
-      }      
+      }
     } else if ((z && x) && (pathArray[1].answer !== click.textContent)) {
       room = gameoverScreen;
       pathArrayTracker(room);
@@ -454,10 +432,6 @@ function createImageQuery() {
   for (let i = 0; i < roomArray.length; i++) {
     getAPI(roomArray[i]);
   }
-}
-
-function setImageToObj(x) {
-
 }
 
 startGame();
