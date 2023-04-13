@@ -38,9 +38,9 @@ var noTurningAroundRoom = {
 }
 
 var roomEntry1 = {
-  roomname: "Choose Your Room",
+  roomname: "The Front of the Temple",
   prompt: ["As you approach the gargantuan temple doors, they swing open... almost like they were expecting you. As you walk slowly inside you catch a glimmer of something metallic lining the temple walls. You step closer to get a better look to realize they are torches and decide to grab and light one. Suddenly the doors behind you slam shut, locking you inside. As the darkness fills the room, the soft warm glow of the torch illuminates the rest of the temple entrance room and you see before you lies three giant stone doors each with a Unique Animal etched into them. The light of your torch dances of the eerie walls. You must pick a door to carry on deeper. Which do you choose?"],
-  opt: ["Snake room", "Eagle room", "Hint room"],
+  opt: ["Snake room", "Eagle room", "Lion Room"],
   entry: ["Enter the Depths of the Temple!", "Go on in"],
   pic: undefined,
   choice: undefined,
@@ -62,7 +62,7 @@ var snake = {
 var eagle = {
   roomname: "Eagle Room",
   entry: ["Eagle room"],
-  prompt: ["Door with key slot"],
+  prompt: ["You approach the door with a grand etching of a large Eagle with its wings spread out wide. Right below the etching, there is a small indent in the shape of a hand. You place your hand on it and once you do, the eagle ethced in the stone illuminates a deep saphire blue and than the doors swing open. Once you step into the room the doors close behind you and a ring of torches along the walls ignite. The light from the torches shines down on three pedestals. Each pedestal has a key with a colored gem inbedded in the top laying flat on the pedestal. the door to the next room has some words etched into it and after a few moments of deciphering it says 'One key will set you free, the others will send you below.' Upon furhter inpsection you see the door has a single keyhole that any of the keys would fit into. Which Key do you pick? "],
   opt: ["Pick the green key", "Pick the blue key", "Pick the red key"],
   picDesc: "Eagle",
   pic: undefined,
@@ -71,10 +71,10 @@ var eagle = {
 
 
 var hint = {
-  roomname: "Hint Room",
-  entry: ["Hint room"],
-  prompt: ["Names carry literal weight"],
-  opt: ["Receive hint"],
+  roomname: "Lion Room",
+  entry: ["Lion Room"],
+  prompt: ["You approach the door with an etching of a grand lion with a large mane standing proudly on a rock. Right below the etching, there is a small indent in the shape of a hand. You place your hand on it and once you do, the lion ethced in the stone illuminates a glowing ruby hue and than the doors swing opens. Once you are insice the room, the door closes behind you and as you peer into the darkness you see an empty room with a skeleton slumped against a wall. Wrapped in his boney hands is a piece of paper. You carefully pry the piece of paper from his hands and upon inspection there was a roughly written statement that read 'The pieces of the names make up the answer'. You only have a moment to digest this info before the paper turns to dust. 'Could that be a hint for later rooms...' you think to yourself before the next door suddenly opens and you can move through to the next room.   " ],
+  opt: ["Progress to the next room."],
   picDesc: "Hint",
   pic: undefined,
   choice: undefined,
@@ -82,8 +82,8 @@ var hint = {
 
 
 var safe1 = {
-  roomname: "Safe Room",
-  prompt: ["You made it to your first Safe Room!"],
+  roomname: "Success!",
+  prompt: ["With a sigh of relief you push forward, You go through the next door."],
   entry: ["Swing on vine", "Pick the green key", "Riddle Answer 1"],
   opt: ["Proceed to the next room"],
   picDesc: "thumbs-up",
@@ -92,10 +92,10 @@ var safe1 = {
 };
 
 var roomEntry2 = {
-  roomname: "Choose a room",
-  prompt: ["Pick wisely"],
+  roomname: "Deep in the temple...",
+  prompt: ["You've made in deep within the temple now. No traps or tricks have stopped you so far. As you walk down a narrow stone hallway you reach another door. Once you push it open you enter into another chamber just like from the entrance of the temple. This time there are three more large stone doors with three diferent creatures. Time to pick the next door.  "],
   opt: ["Boar room", "Dragon room", "Bear room"],
-  entry: ["Proceed to the next room", "Receive hint"],
+  entry: ["Proceed to the next room", "Progress to the next room."],
   picDesc: "doors",
   pic: undefined,
   choice: undefined,
@@ -105,7 +105,7 @@ var roomEntry2 = {
 var boar = {
   roomname: "Boar Room",
   entry: ["Boar room"],
-  prompt: ["An angry minotaur!"],
+  prompt: ["You approach the door with a scary etching of an angry boar with broken tusks and an evil expression on its face. Right below the etching, there is another hand shaped indent. You place your hand on it once more but in a flash the stone door releases a stone cuff around your wrist and traps your hand. You pull quickly but your hand is trapped, the eagle ethced in the stone illuminates a dark orange and than the doors swing open pulling you inside. A second door drops down from the doorway trapping you inside the room. Your wristcuff is released and you see that inside the small hall before the next door, the floor is littered with bones. Gathering your strength you push forward and as you peak into the next room you see a hulking figure standing in the middle of the room.  "],
   opt: ["Roll out of the way", "Try to stop him", "Side step"],
   picDesc: "Minotaur",
   pic: undefined,
@@ -247,7 +247,7 @@ function renderTrap(obj) {
   console.log("This is your array: " + trapRoomArray);
 
   roomNameEl.textContent = "";
-  roomNameEl.textContent = "Temple Riddle";
+  roomNameEl.textContent = "Oh no a Trap! Solve this riddle to escape!";
 
   promptEl.textContent = "";
   promptEl.textContent = obj.prompt;
