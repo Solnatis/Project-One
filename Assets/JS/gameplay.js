@@ -15,6 +15,7 @@ var choicesArray = [optionA, optionB, optionC, optionD];
 
 var room;
 var count = 0;
+var countMinus = 0;
 
 // // Trap room array will have riddles
 // var trapRoom = {
@@ -46,12 +47,20 @@ var startRoom = {
   choice: undefined,
 };
 
+var noTurningAroundRoom = {
+  roomname: "There's no turning around!",
+  entry: ["Turn around and go home!"],
+  prompt: ["Let's keep it going"],
+  opt: ["Go on in"],
+  pic: undefined,
+  choice: undefined,
+}
 
 var roomEntry1 = {
   roomname: "Choose Your Room",
   prompt: ["Choose wisely"],
   opt: ["Snake room", "Eagle room", "Hint room"],
-  entry: ["Go into the depth"],
+  entry: ["Go into the depth", "Go on in"],
   pic: undefined,
   choice: undefined,
 };
@@ -89,8 +98,8 @@ var hint = {
 
 var safe1 = {
   roomname: "Safe Room",
-  entry: ["Swing on vine", "Pick the green key"],
   prompt: ["You made it to your first Safe Room!"],
+  entry: ["Swing on vine", "Pick the green key", "Riddle Answer 1"],
   opt: ["Proceed to the next room"],
   pic: undefined,
   choice: undefined,
@@ -100,7 +109,7 @@ var roomEntry2 = {
   roomname: "Choose a room",
   prompt: ["Pick wisely"],
   opt: ["Boar room", "Dragon room", "Bear room"],
-  entry: ["Proceed to the next room", "Receive hint", "Riddle Answer 1"],
+  entry: ["Proceed to the next room", "Receive hint"],
   pic: undefined,
   choice: undefined,
 };
@@ -147,7 +156,7 @@ var dragonTrap = {
 var safe2 = {
   roomname: "Safe Room",
   prompt: ["Another safe room! Well done!"],
-  entry: ["Lion", "Side step", "Wake him up because why not", "Play dead"],
+  entry: ["Lion", "Side step", "Wake him up because why not", "Play dead", "Riddle Answer 2"],
   opt: ["Pick another room"],
   pic: undefined,
   choice: undefined,
@@ -157,7 +166,7 @@ var roomEntry3 = {
   roomname: "Choose Your Room",
   prompt: ["Choose wisely"],
   entry: ["Pick another room"],
-  opt: ["Riddle Room", "Hydra Room", "Angel Room", "Riddle Answer 2"],
+  opt: ["Riddle Room", "Hydra Room", "Angel Room"],
   pic: undefined,
   choice: undefined,
 };
@@ -201,16 +210,16 @@ var victoryScreen = {
 
 var gameoverScreen = {
   roomname: "GAME OVER!",
-  entry: ["Try to jump!", "Roll out of the way", "Try to stop him", "Take some treasure then leave!", "Run to the end of the hall", "Tiger", "Seahorse", "Hippo", "Time", "Age", "Happiness", "Pick up a rusty spear and throw it", "Try to swim across", "Offer your treasure"],
+  entry: ["Try to jump!", "Roll out of the way", "Try to stop him", "Take some treasure then leave!", "Run to the end of the hall", "Tiger", "Seahorse", "Hippo", "Time", "Age", "Happiness", "Pick up a rusty spear and throw it", "Try to swim across", "Offer your treasure", "Temple Riddle"],
   prompt: ["GAME OVER"],
-  explanation: ["Jumped a lil too short and the snakes got you", "You didn't roll far enough and got stomped", "What were you thinking?", "The treasure was death", "You can't outrun death!", "The temple claims another with its riddles", "The temple claims another with its riddles", "The temple claims another with its riddles", "The temple claims another with its riddles", "The temple claims another with its riddles", "The temple claims another with its riddles", "The spear bounces off the hydra's scales and now it's more mad", "What're you doing? You can't swim", "You have no tresure and the hydra is made"],
+  explanation: ["Jumped a lil too short and the snakes got you", "You didn't roll far enough and got stomped", "What were you thinking?", "The treasure was death", "You can't outrun death!", "The temple claims another with its riddles", "The temple claims another with its riddles", "The temple claims another with its riddles", "The temple claims another with its riddles", "The temple claims another with its riddles", "The temple claims another with its riddles", "The spear bounces off the hydra's scales and now it's more mad", "What're you doing? You can't swim", "You have no tresure and the hydra is made", "The temple claims another with its riddles"],
   pic: undefined,
   choice: undefined,
   winner: false,
 }
 
 // Room array to hold all the objects and parse through the array
-var roomArray = [startRoom, roomEntry1, snake, eagle, hint, safe1, roomEntry2, boar, dragon, bear, dragonTrap, safe2, roomEntry3, riddleRoom, hydra, angel, victoryScreen, gameoverScreen];
+var roomArray = [startRoom, noTurningAroundRoom, roomEntry1, snake, eagle, hint, safe1, roomEntry2, boar, dragon, bear, dragonTrap, safe2, roomEntry3, riddleRoom, hydra, angel, victoryScreen, gameoverScreen];
 var trapRoomArray = [];
 var pathArray = [];
 
@@ -242,16 +251,30 @@ function renderTrap(obj) {
   roomNameEl.textContent = "Temple Riddle";
 
   promptEl.textContent = "";
-  promptEl.textContent = obj.riddle;
+  promptEl.textContent = obj.prompt;
 
   for (let i = 0; i < trapRoomArray.length; i++) {
     choicesArray[i].textContent = "";
     choicesArray[i].textContent = trapRoomArray[i].answer;
-
+    if (choicesArray[i].textContent !== "") {
+      choicesArray[i].style.display = 'block';
+      choicesArray[i].parentElement.style.display = 'inline-block';
+    } else if (choicesArray[i].textContent === "") {
+      test = false;
+      choicesArray[i].style.display = 'none';  
+      choicesArray[i].parentElement.style.display = 'none';
+      console.log(test); 
     }
+  }
   
 
   count++;
+  countMinus++;
+
+  if (count == countMinus) {
+    countMinus--;
+  }
+
 }
 
 // API for pictures
@@ -285,8 +308,9 @@ function getRiddleAPI() {
     console.log(data);
     
     var randomRiddle = {
+      roomname: "Temple Riddle",
       entry: ["Pick the blue key", "Pick the red key", "Duck into a room"],
-      riddle: data.riddle,
+      prompt: data.riddle,
       answer: data.answer,
     };
     
@@ -354,6 +378,8 @@ function roomSelection(e) {
   var x = true;
   var z = true;
   if (click.matches(".option")) {
+
+    console.log(click.textContent);
     
     for (let i = 0; i < roomArray.length; i++) {
       if (roomArray[i].entry.includes(click.textContent)) {
@@ -390,7 +416,7 @@ function roomSelection(e) {
     //   if (trapRoomArray[i].answer.includes(click.textContent) && )
     // }
 
-    if ((trapRoomArray[count].answer === click.textContent) && z) {
+    if ((z && x) && (pathArray[1].answer === click.textContent)) {
       for (let i = 0; i < roomArray.length; i++) {
         if (roomArray[i].entry.includes("Riddle Answer " + count)) {
           room = roomArray[i];
@@ -399,7 +425,7 @@ function roomSelection(e) {
           break;
         }
       }      
-    } else if (trapRoomArray[count].answer !== click.textContent && z) {
+    } else if ((z && x) && (pathArray[1].answer !== click.textContent)) {
       room = gameoverScreen;
       pathArrayTracker(room);
       location.href = 'gameEndScreens.html';

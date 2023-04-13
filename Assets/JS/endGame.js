@@ -6,13 +6,18 @@ var explanationEl = document.querySelector('#explanation-text');
 
 function victoryCheck() {
     var parsedPath = JSON.parse(localStorage.getItem('path'));
+    var index;
 
     if (parsedPath) {
         victoryEl.textContent = "";
         victoryEl.textContent = parsedPath[1].prompt[0];
 
-        var index = parsedPath[1].entry.indexOf(parsedPath[1].choice);
-
+        if (parsedPath[0].roomname === "Temple Riddle") {
+            index = parsedPath[1].entry.indexOf()
+        } else {
+            index = parsedPath[1].entry.indexOf(parsedPath[1].choice);
+        }
+        
         explanationEl.textContent = "";
         explanationEl.textContent = parsedPath[1].explanation[index];
     }
