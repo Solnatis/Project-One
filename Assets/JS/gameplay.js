@@ -78,7 +78,7 @@ var hint = {
 var safe1 = {
   roomname: "Safe Room",
   prompt: ["You made it to your first Safe Room!"],
-  entry: ["Swing on vine", "Pick the green key", "Riddle Answer 1"],
+  entry: ["Swing on vine", "Pick the green key", "Riddle Answer"],
   opt: ["Proceed to the next room"],
   picDesc: "thumbs-up",
   pic: undefined,
@@ -138,7 +138,7 @@ var dragonTrap = {
 var safe2 = {
   roomname: "Safe Room",
   prompt: ["Another safe room! Well done!"],
-  entry: ["Lion", "Side step", "Wake him up because why not", "Play dead", "Riddle Answer 2"],
+  entry: ["Lion", "Side step", "Wake him up because why not", "Play dead", "Riddle Answer"],
   opt: ["Pick another room"],
   picDesc: "thumbs-up",
   pic: undefined,
@@ -394,14 +394,26 @@ function roomSelection(e) {
     }
     
     if ((z && x) && (pathArray[1].answer === click.textContent)) {
-      for (let i = 0; i < roomArray.length; i++) {
-        if (roomArray[i].entry.includes("Riddle Answer " + count)) {
-          room = roomArray[i];
-          pathArrayTracker(room);
-          renderRoom(room);
-          break;
+      
+      if (roomArray.indexOf(pathArray[0]) <= 6) {
+        for (let i = 0; i < roomArray.length; i++) {
+          if (roomArray[i].entry.includes("Riddle Answer")) {
+            room = roomArray[i];
+            pathArrayTracker(room);
+            renderRoom(room);
+            break;
+          }
+        }      
+      } else if (roomArray.indexOf(pathArray[0]) > 6) {
+        for (let i = 7; i < roomArray.length; i++) {
+          if (roomArray[i].entry.includes("Riddle Answer")) {
+            room = roomArray[i];
+            pathArrayTracker(room);
+            renderRoom(room);
+            break;
+          }
         }
-      }      
+      }
     } else if ((z && x) && (pathArray[1].answer !== click.textContent)) {
       room = gameoverScreen;
       pathArrayTracker(room);
