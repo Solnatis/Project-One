@@ -9,14 +9,12 @@ var optionA = document.querySelector('#option-a');
 var optionB = document.querySelector('#option-b');
 var optionC = document.querySelector('#option-c');
 var optionD = document.querySelector('#option-d');
-
 var optionContainer = document.querySelector('#option-container');
 
 var choicesArray = [optionA, optionB, optionC, optionD];
 
 var room;
 var count = 0;
-var countMinus = 0;
 
 var startRoom = {
   roomname: "Temple Entrance",
@@ -47,7 +45,6 @@ var roomEntry1 = {
   picDesc: "Doors",
 };
 
-
 var snake = {
   roomname: "Snake Room",
   entry: ["Snake room"],
@@ -57,7 +54,6 @@ var snake = {
   pic: undefined,
   choice: undefined,
 };
-
 
 var eagle = {
   roomname: "Eagle Room",
@@ -69,7 +65,6 @@ var eagle = {
   choice: undefined,
 };
 
-
 var hint = {
   roomname: "Hint Room",
   entry: ["Hint room"],
@@ -79,7 +74,6 @@ var hint = {
   pic: undefined,
   choice: undefined,
 };
-
 
 var safe1 = {
   roomname: "Safe Room",
@@ -101,7 +95,6 @@ var roomEntry2 = {
   choice: undefined,
 };
 
-
 var boar = {
   roomname: "Boar Room",
   entry: ["Boar room"],
@@ -112,7 +105,6 @@ var boar = {
   choice: undefined,
 };
 
-
 var dragon = {
   roomname: "Dragon Room",
   entry: ["Dragon room"],
@@ -122,7 +114,6 @@ var dragon = {
   pic: undefined,
   choice: undefined,
 };
-
 
 var bear = {
   roomname: "Bear Room",
@@ -210,7 +201,6 @@ var gameoverScreen = {
   entry: ["Try to jump!", "Roll out of the way", "Try to stop him", "Take some treasure then leave!", "Run to the end of the hall", "Tiger", "Seahorse", "Hippo", "Time", "Age", "Happiness", "Pick up a rusty spear and throw it", "Try to swim across", "Offer your treasure", "Temple Riddle"],
   prompt: ["GAME OVER"],
   explanation: ["You take a breath and take a few steps back. You sprint towards the edge and jump!... Right into the pit of Vipers.", "You didn't roll far enough and got stomped", "What were you thinking?", "The treasure was death", "You can't outrun death!", "The temple claims another with its riddles", "The temple claims another with its riddles", "The temple claims another with its riddles", "The temple claims another with its riddles", "The temple claims another with its riddles", "The temple claims another with its riddles", "The spear bounces off the hydra's scales and now it's more mad", "What're you doing? You can't swim", "You have no tresure and the hydra is made", "The temple claims another with its riddles"],
-  explanation: ["Jumped a lil too short and the snakes got you", "You didn't roll far enough and got stomped", "What were you thinking?", "The treasure was death", "You can't outrun death!", "The temple claims another with its riddles", "The temple claims another with its riddles", "The temple claims another with its riddles", "The temple claims another with its riddles", "The temple claims another with its riddles", "The temple claims another with its riddles", "The spear bounces off the hydra's scales and now it's more mad", "What're you doing? You can't swim", "You have no tresure and the hydra is made", "The temple claims another with its riddles"],
   picDesc: "game-over",
   pic: undefined,
   choice: undefined,
@@ -226,14 +216,6 @@ var imageArray = [];
 // Event listener when game starts
 function trapRoomGenerator() {
   trapRoomStorage();
-}
-
-// Forgot why I need to use this function
-function trapRoomRetrieve() {
-  var parsedArray = JSON.parse(localStorage.getItem('trapRoomArray'));
-
-  if (parsedArray !== null)
-    trapRoomArray = parsedArray;
 }
 
 function trapRoomStorage() {
@@ -265,15 +247,7 @@ function renderTrap(obj) {
       console.log(test); 
     }
   }
-  
-
   count++;
-  countMinus++;
-
-  if (count == countMinus) {
-    countMinus--;
-  }
-
 }
 
 // API for pictures
@@ -325,13 +299,9 @@ function getRiddleAPI() {
     };
     
     trapRoomArray.push(randomRiddle);
-    
-    
-    // Why would we need to store the trap array in local storage?
-    // Might be over complicating things
+
     if (trapRoomArray.length === 4) {
       createImageQuery();
-      localStorage.setItem('trapRoomArray', JSON.stringify(trapRoomArray));
     }
   })
 };
@@ -342,7 +312,6 @@ function startGame() {
   
   if (confirm) {
     trapRoomGenerator();
-    // renderRoom(startRoom);
   };
 
 }
@@ -424,10 +393,6 @@ function roomSelection(e) {
       }
     }
     
-    // for (let i = count; i < trapRoomArray.length; i++) {
-    //   if (trapRoomArray[i].answer.includes(click.textContent) && )
-    // }
-
     if ((z && x) && (pathArray[1].answer === click.textContent)) {
       for (let i = 0; i < roomArray.length; i++) {
         if (roomArray[i].entry.includes("Riddle Answer " + count)) {
@@ -455,10 +420,6 @@ function createImageQuery() {
   for (let i = 0; i < roomArray.length; i++) {
     getAPI(roomArray[i]);
   }
-}
-
-function setImageToObj(x) {
-
 }
 
 startGame();
