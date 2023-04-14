@@ -1,7 +1,7 @@
-var backgroundPicEL = document.querySelector('#background-pic');
-
+// url for riddle API
 var riddleURL = "https://riddles-api.vercel.app/random";
 
+// Variables of query selectors
 var roomNameEl = document.querySelector('#room-name');
 var promptEl = document.querySelector('#prompt');
 var imageEl = document.querySelector('#image');
@@ -11,11 +11,12 @@ var optionC = document.querySelector('#option-c');
 var optionD = document.querySelector('#option-d');
 var optionContainer = document.querySelector('#option-container');
 
+// Variables to help render rooms
 var choicesArray = [optionA, optionB, optionC, optionD];
-
 var room;
 var count = 0;
 
+// List of objects that render onto the path
 var startRoom = {
   roomname: "Temple Entrance",
   entry: ["X", "Y", "Z"],
@@ -138,7 +139,7 @@ var dragonTrap = {
 var safe2 = {
   roomname: "Success Again!!",
   prompt: ["Through sheer luck you've survivied. You collapse to the floor exhausted. But your not done yet. Your gut tells you that your almost there. So you pick yourself up, brush yourself off, and carry on."],
-  entry: ["Lion", "Side step", "Wake him up because why not", "Play dead", "Riddle Answer 2"],
+  entry: ["Lion", "Side step", "Wake him up because why not", "Play dead", "Riddle Answer"],
   opt: ["Pick another room"],
   picDesc: "thumbs-up",
   pic: undefined,
@@ -209,15 +210,17 @@ var gameoverScreen = {
 
 // Room array to hold all the objects and parse through the array
 var roomArray = [startRoom, noTurningAroundRoom, roomEntry1, snake, eagle, hint, safe1, roomEntry2, boar, dragon, bear, dragonTrap, safe2, roomEntry3, riddleRoom, hydra, angel, victoryScreen, gameoverScreen];
+// List of arrays
 var trapRoomArray = [];
 var pathArray = [];
 var imageArray = [];
 
-// Event listener when game starts
+// Start fetching from API once game starts
 function trapRoomGenerator() {
   trapRoomStorage();
 }
 
+// Fetching multiple of riddle API
 function trapRoomStorage() {
   getRiddleAPI();
   getRiddleAPI();
@@ -225,6 +228,7 @@ function trapRoomStorage() {
   getRiddleAPI();
 }
 
+// Render the trap room using a trap room object
 function renderTrap(obj) {
   console.log("This is your array: " + trapRoomArray);
 
@@ -234,6 +238,7 @@ function renderTrap(obj) {
   promptEl.textContent = "";
   promptEl.textContent = obj.prompt;
 
+  // Displays the buttons
   for (let i = 0; i < trapRoomArray.length; i++) {
     choicesArray[i].textContent = "";
     choicesArray[i].textContent = trapRoomArray[i].answer;
@@ -265,12 +270,13 @@ function getAPI(obj) {
   .then(function(data) {
     console.log(data);
     
+    // Pulls random hit and store into an array
     var rand = Math.floor(Math.random() * 10);
     obj.pic = data.hits[rand].webformatURL;
     imageArray.push(obj);
     console.log(obj);
 
-
+    // Renders the room once all of the fetching is complete
     if (imageArray.length === 5) {
       renderRoom(startRoom);
     }
@@ -282,6 +288,7 @@ function getAPI(obj) {
   })
 };
 
+// API for riddles
 function getRiddleAPI() {
   fetch(riddleURL)
   .then(function(response) {
@@ -291,33 +298,35 @@ function getRiddleAPI() {
   .then(function(data) {
     console.log(data);
     
+    // Riddle object created to push into an array
     var randomRiddle = {
       roomname: "Temple Riddle",
       entry: ["Pick the blue key", "Pick the red key", "Duck into a room"],
       prompt: data.riddle,
       answer: data.answer,
     };
-    
     trapRoomArray.push(randomRiddle);
 
+    // Calls for fetching of image API once riddle fetch is complete
     if (trapRoomArray.length === 4) {
       createImageQuery();
     }
   })
 };
 
+// Starts game once page is loaded
 function startGame() {
   
+  // Confirmation to start fetching
   var confirm = localStorage.getItem('start-game');
-  
   if (confirm) {
     trapRoomGenerator();
   };
 
 }
 
+// Renders room based on object
 function renderRoom(obj) {
-  var test = true;
 
   roomNameEl.textContent = "";
   roomNameEl.textContent = obj.roomname;
@@ -328,6 +337,7 @@ function renderRoom(obj) {
   imageEl.textContent = "";
   imageEl.setAttribute("style", "background-image:url(" + obj.pic + "); background-position:center; background-size:cover; align-items:center; width:50%; height: 300px;");
   
+  // If options are < 4, then empty buttons will not display
   for (let i = 0; i < choicesArray.length; i++) {
     choicesArray[i].textContent = "";
     choicesArray[i].textContent = obj.opt[i];
@@ -335,14 +345,13 @@ function renderRoom(obj) {
       choicesArray[i].style.display = 'block';
       choicesArray[i].parentElement.style.display = 'inline-block';
     } else if (choicesArray[i].textContent === "") {
-      test = false;
       choicesArray[i].style.display = 'none';  
       choicesArray[i].parentElement.style.display = 'none';
-      console.log(test); 
     }    
   }
 };
 
+// Keeps track of the path in which you came from
 function pathArrayTracker(path) {
   pathArray.push(path);
   if(pathArray.length > 2) {
@@ -352,27 +361,31 @@ function pathArrayTracker(path) {
   localStorage.setItem('path', JSON.stringify(pathArray));
 }
 
+// Function after a click event
 function roomSelection(e) {
   e.preventDefault();
 
   var click = e.target; 
   var x = true;
   var z = true;
+  
+  // Only continues if you click on a button
   if (click.matches(".option")) {
-
-    console.log(click.textContent);
     
+    // If you choose a pathway to a normal room (within the room array)
     for (let i = 0; i < roomArray.length; i++) {
       if (roomArray[i].entry.includes(click.textContent)) {
         
         room = roomArray[i];
         room.choice = click.textContent;
         pathArrayTracker(room);
-        console.log(room);
+
         x = false;
         z = false;
+
+        // Will change to end game screen if you choose the given path
         if (room === victoryScreen || room === gameoverScreen) {
-          location.href = 'gameEndScreens.html';
+          endGame();
         }
         
         renderRoom(room);
@@ -380,11 +393,11 @@ function roomSelection(e) {
       } 
     }
     
-    // Since trap room array is not populated prior to click, then you need to make array full
+    // If you choose a PATHWAY to a trap room (within the trap room array)
     for (let i = count; i < trapRoomArray.length; i++) {
       if (trapRoomArray[i].entry.includes(click.textContent) && x) {
+        
         room = trapRoomArray[i];
-        console.log(room);
         z = false;
 
         pathArrayTracker(room);
@@ -393,8 +406,10 @@ function roomSelection(e) {
       }
     }
     
+    // If you choose the CORRECT ANSWER within the trap room
     if ((z && x) && (pathArray[1].answer === click.textContent)) {
       
+      // Prevents from looping back to a previous safe room
       if (roomArray.indexOf(pathArray[0]) <= 6) {
         for (let i = 0; i < roomArray.length; i++) {
           if (roomArray[i].entry.includes("Riddle Answer")) {
@@ -414,26 +429,30 @@ function roomSelection(e) {
           }
         }
       }
+
+    // If you choose the WRONG ANSWER within the trap room
     } else if ((z && x) && (pathArray[1].answer !== click.textContent)) {
       room = gameoverScreen;
       pathArrayTracker(room);
-      location.href = 'gameEndScreens.html';
+      endGame();
     }
-
   }
-
 }
 
+// Directs to end game html
 function endGame() {
   location.href = 'gameEndScreens.html'
 }
 
+// Fetches images for image API for all rooms
 function createImageQuery() {
   for (let i = 0; i < roomArray.length; i++) {
     getAPI(roomArray[i]);
   }
 }
 
+// Starts game once you load into page
 startGame();
 
+// Event listener
 optionContainer.addEventListener('click', roomSelection);

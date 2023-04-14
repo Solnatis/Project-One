@@ -1,10 +1,10 @@
-// End Game Restart Loop Button //
+// Variables using query selector
 var restartBtn = document.querySelector('#restart-button');
-
 var victoryEl = document.querySelector('#victory-text');
 var explanationEl = document.querySelector('#explanation-text');
 var imageEl = document.querySelector('#image');
 
+// Function to display contents of end game based on pathway
 function victoryCheck() {
     var parsedPath = JSON.parse(localStorage.getItem('path'));
     var index;
@@ -33,17 +33,12 @@ function victoryCheck() {
 
 victoryCheck();
 
-// If the option is within the entry of victory, then what is that victory.entry index
-    // Save index as a variable
-        // Pass the variable into victory.explanation[var]
-
-
+// Restart the game
 function restartGame(event) {
     event.preventDefault();
 
     location.href = 'index.html';
 }
 
+// Event listener
 restartBtn.addEventListener('click', restartGame);
-
-// // Same endgame.obj in endgame.js, 
